@@ -1,0 +1,43 @@
+Model/DB Fields
+
+### ORGANISATIONS
+id: INT
+classes: INT (FOREIGN KEY [classes])
+name: STR
+address: STR
+city: STR
+zipcode: STR
+country: STR
+description: TEXT
+type: STR (Centre, School, Store, Pilgrimage, Charity)
+logo: STR
+creation_date: Date
+
+### CLASSES
+id: INT
+teacher: INT (FOREIGN KEY [teacher])
+organisation: INT (FOREIGN KEY [organisation]) if not online show address from here
+title: STR
+description: TEXT
+time: TIME
+price: STR
+language: STR
+is_online: BOOL [0]
+link: STR
+photo: STR
+creation_date: Date
+
+### TEACHERS
+id: INT
+name: STR
+country: STR
+type: STR
+creation_date: Date
+
+### ADMINISTRATOR
+id: INT
+name: STR
+organisation: INT
+organisation_id: INT
+class: INT
+class_id
