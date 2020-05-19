@@ -1,0 +1,30 @@
+#header {
+    height: 50px;
+    background: #10284e;
+    color: #ffffff;
+}
+
+#branding h1 {
+    color: #ffffff;
+}
+
+.dashboard #content {
+    width: auto !important;
+}
+
+div.breadcrumbs,
+div.breadcrumbs a:hover {
+    color: #000027 !important;
+}
+
+div.breadcrumbs {
+    background: #3f507a;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #3f507a;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: #10284e;
+}

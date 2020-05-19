@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'organisations.apps.OrganisationsConfig',
     'classes.apps.ClassesConfig',
     'teachers.apps.TeachersConfig',
+    'django_admin_listfilter_dropdown',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,3 +130,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'salafi_directory/static')
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

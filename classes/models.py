@@ -3,7 +3,7 @@ from django.utils import timezone
 from organisations.models import Organisation
 from teachers.models import Teacher
 
-class Class(models.Model):
+class Classe(models.Model):
     organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
     teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)

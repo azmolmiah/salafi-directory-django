@@ -1,0 +1,10 @@
+{% extends 'admin/base.html' %}
+
+{% load static %}
+
+{% block branding %}
+    <div id="head"><img src="{% static 'img/logo.png' %}" alt="Salafi Directory Logo" height="50" width="200" class="brand_img"></div>
+{% endblock %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
