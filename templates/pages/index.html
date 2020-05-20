@@ -105,141 +105,59 @@
     </div>
   </section>
 
-  <!-- Listings -->
+  <!-- Lectures -->
   <section id="listings" class="py-5">
     <div class="container">
-      <h3 class="text-center mb-3">Latest Classes &amp; Lectures</h3>
-      <div class="row">
-        <!-- Listing 1 -->
+      <h3 class="text-center mb-3">Latest Classes</h3>
+      <!-- Listing -->
+      {% if classes %}
         <div class="col-md-6 col-lg-4 mb-4">
+          {% for singleClass in classes%}
           <div class="card listing-preview">
-            <img class="card-img-top" src="assets/img/homes/home-1.jpg" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$490,000</span>
-              </h2>
+              <img style="width: 70%; height: 70%;" class="card-img-top mx-auto mt-4" src="{{ singleClass.photo.url }}" alt="">
+                <!-- <div class="card-img-overlay">
+                  See if you can add class or lecture on when datetime.now == classes.time
+                  <h2>
+                    <span class="badge badge-secondary text-white">Live Now</span>
+                  </h2>
+                </div> -->
+              <div class="card-body">
+                <div class="listing-heading text-center">
+                  <h4 class="text-primary">{{ singleClass.title }}</h4>
+                  {% if singleClass.is_online %}
+                    Class is now online
+                  {% else %}
+                    <p class="text-secondary">
+                    <i class="fas fa-map-marker "></i> <a href="https://maps.google.com/maps?q={{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}">{{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}</a></p>
+                  {% endif %}
+                </div>
+                <hr>
+                <div class="row py-2">
+                  <div class="col-6 text-center">
+                    <i class="far fa-clock"></i> {{singleClass.time}}
+                  </div>
+                  <div class="col-6 text-center">
+                    <i class="fas fa-pound-sign"></i> 
+                    {% if singleClass.price == 0 %}
+                      Free
+                    {% else %}
+                      {{singleClass.price}}
+                    {% endif %}
+                  </div>
+                </div>
+                <hr>
+                {% if singleClass.is_online %}
+                  <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">Join Class</a>
+                {% endif %}
+              </div>
             </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">45 Drivewood Circle</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Norwood MA, 02062</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Sqft: 2500</div>
-                <div class="col-6">
-                  <i class="fas fa-car"></i> Garage: 2</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-bed"></i> Bedrooms: 3</div>
-                <div class="col-6">
-                  <i class="fas fa-bath"></i> Bathrooms: 2</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Kyle Brown</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> 5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
+          {% endfor %}
+        {% else %}
+          <div class="bg-primary">
+            <p>No Organisation listings available</p>
           </div>
-        </div>
-
-        <!-- Listing 2 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="assets/img/homes/home-2.jpg" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$550,000</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">18 Jefferson Lane</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Woburn MA, 01801</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Sqft: 3200</div>
-                <div class="col-6">
-                  <i class="fas fa-car"></i> Garage: 1</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-bed"></i> Bedrooms: 4</div>
-                <div class="col-6">
-                  <i class="fas fa-bath"></i> Bathrooms: 2.5</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Mark Hudson</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> 5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 3 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="assets/img/homes/home-3.jpg" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$580,000</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">187 Woodrow Street</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Salem MA, 01915</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Sqft: 3107</div>
-                <div class="col-6">
-                  <i class="fas fa-car"></i> Garage: 0</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-bed"></i> Bedrooms: 4</div>
-                <div class="col-6">
-                  <i class="fas fa-bath"></i> Bathrooms: 3</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Mark Hudson</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> 5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
+        {% endif %}
+      </div>  
     </div>
   </section>
 
