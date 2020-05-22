@@ -6,7 +6,7 @@
       <div class="row text-center">
         <div class="col-md-12">
           <h1 class="display-4">Browse Salafi Organisations</h1>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+          <p class="lead">Search the people of sunnah and safeguard your religion, by sticking to the listed salafi organisaton's.</p>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
             <!-- Listing -->
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img style="width: 70%; height: 70%;" class="card-img-top mx-auto mt-4" src="{{organisation.logo.url }}" alt="">
+                <img class="card-img-top" src="{{organisation.logo.url }}" alt="">
                 <!-- <div class="card-img-overlay">
                   See if you can add class or lecture on when datetime.now == classes.time
                   <h2>
@@ -47,7 +47,7 @@
                   <div class="listing-heading text-center">
                     <h4 class="text-primary">{{ organisation.name }}</h4>
                     <p class="text-secondary">
-                      <i class="fas fa-map-marker "></i> <a href="https://maps.google.com/maps?q={{organisation.address}}, {{organisation.zipcode}}">{{organisation.address}}, {{organisation.zipcode}}</a> </p>
+                      <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{organisation.address}}, {{organisation.zipcode}}">{{organisation.address}}, {{organisation.zipcode}}</a> </p>
                   </div>
                   <hr>
                   <div class="row py-2">
@@ -63,15 +63,22 @@
                       <i class="fas fa-quran text-secondary"></i> Lectures: 2</div>
                   </div>
                   <hr>
-                  <!-- <div class="row py-2 text-secondary">
-                    <div class="col-12">
-                      <i class="fas fa-user"></i> Kyle Brown</div>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-md-12">
+                      <div class="social text-center">
+                          <a href="{{ organisation.twitter }}">
+                        <i class="fab fa-twitter fa-2x"></i>
+                        </a>
+                        <a href="{{ organisation.facebook }}">
+                          <i class="fab fa-facebook fa-2x"></i>
+                        </a>
+                        <a href="{{ organisation.soundcloud }}">
+                          <i class="fab fa-soundcloud fa-2x"></i>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="row text-secondary pb-2">
-                    <div class="col-6">
-                      <i class="fas fa-clock"></i> 2 days ago</div>
-                  </div>
-                  <hr> -->
+                  <hr>
                   <a href="{% url 'organisation' organisation.id %}" class="btn btn-primary btn-block">More Info</a>
                 </div>
               </div>

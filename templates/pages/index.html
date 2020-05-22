@@ -112,24 +112,25 @@
       <div class="row">
           <!-- Listing -->
         {% if classes %}
-          {% for singleClass in classes%}
+          {% for singleClass in classes %}
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img style="width: 70%; height: 70%;" class="card-img-top mx-auto mt-4" src="{{ singleClass.photo.url }}" alt="">
-                <!-- <div class="card-img-overlay">
-                  See if you can add class or lecture on when datetime.now == classes.time
-                  <h2>
-                    <span class="badge badge-secondary text-white">Live Now</span>
-                  </h2>
-                </div> -->
+                <img class="card-img-top" src="{{ singleClass.photo.url }}" alt="">
+                {% if singleClass.is_online %}
+                  <div class="card-img-overlay">
+                    <h2>
+                      <span class="badge badge-secondary text-white">Online Class</span>
+                    </h2>
+                  </div>
+                {% endif %}
                 <div class="card-body">
                   <div class="listing-heading text-center">
                     <h4 class="text-primary">{{ singleClass.title }}</h4>
                     {% if singleClass.is_online %}
-                      Class is now online
+                      Please, use the link below.
                     {% else %}
                       <p class="text-secondary">
-                      <i class="fas fa-map-marker "></i> <a href="https://maps.google.com/maps?q={{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}">{{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}</a></p>
+                      <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}">{{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}</a></p>
                     {% endif %}
                   </div>
                   <hr>
@@ -147,9 +148,19 @@
                     </div>
                   </div>
                   <hr>
-                  {% if singleClass.is_online %}
-                    <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">Join Class</a>
-                  {% endif %}
+                  <div class="text-center mb-2">
+                    {{singleClass.organisation.name}}
+                  </div>
+                  
+                  <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">
+                    <i class="fab fa-soundcloud fa-lg"></i>
+                    {% if singleClass.is_online %}
+                      Listen Live
+                    {% else %}
+                      Recording
+                    {% endif %}
+                  </a>
+      
                 </div>
               </div>
             </div>
@@ -170,22 +181,19 @@
           <i class="fas fa-mosque fa-4x mr-4"></i>
           <hr>
           <h3>Organisations</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
-            hic dignissimos ratione ea quae.</p>
+          <p>Search listed Salafi organisations in the United Kindom and other countries. Search for centres, schools, stores, charity and pilgrimage organisations.</p>
         </div>
         <div class="col-md-4">
           <i class="fas fa-book-open fa-4x mr-4"></i>
           <hr>
           <h3>Classes</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
-            hic dignissimos ratione ea quae.</p>
+          <p>Search classes and attend at the centres or online. Save classes to your account. Click on location, to be redirected to google maps.</p>
         </div>
         <div class="col-md-4">
           <i class="fas fa-chalkboard-teacher fa-4x mr-4"></i>
           <hr>
           <h3>Teachers</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
-            hic dignissimos ratione ea quae.</p>
+          <p>Stick with the scholars and the teachers, from the people of sunnah. Search for their names and their country of residence.</p>
         </div>
       </div>
     </div>

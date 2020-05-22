@@ -6,7 +6,7 @@ from organisations.models import Organisation
 def index(request):
     g = GeoIP2('GeoLite2-Country_20200519')
     country_code = g.country_code('15.194.1.177')
-    organisations = Organisation.objects.filter(country=f'{country_code}')
+    organisations = Organisation.objects.filter(country='GB')
     classes = Class.objects.all().filter(organisation__in=organisations).order_by('-created')[:3]
     context = {
         'classes': classes
