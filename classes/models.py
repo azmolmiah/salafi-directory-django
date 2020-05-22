@@ -16,7 +16,7 @@ class Class(models.Model):
     language = models.CharField(max_length=200, default='English')
     is_online = models.BooleanField(default=False)
     link = models.URLField(blank=True)
-    photo = models.ImageField(upload_to='classes/')
+    photo = models.ImageField(upload_to=f'classes/')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

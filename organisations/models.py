@@ -20,7 +20,12 @@ class Organisation(models.Model):
     soundcloud = models.URLField(blank=True)
     types = models.CharField(max_length=20, choices=[('Centre', 'Centre'), ('School', 'School'), ('Store', 'Store'), ('Pilgrimage', 'Pilgrimage'), ('Charity', 'Charity')])
     logo = models.ImageField(upload_to='logos/')
-    photo_main = models.ImageField(upload_to='photos/', default='photos/', blank=True)
+    photo_main = models.ImageField(upload_to='photos/', default='photos/')
+    photo_1 = models.ImageField(upload_to='photos/', default='photos/', blank=True)
+    photo_2 = models.ImageField(upload_to='photos/', default='photos/', blank=True)
+    photo_3 = models.ImageField(upload_to='photos/', default='photos/', blank=True)
+    photo_4 = models.ImageField(upload_to='photos/', default='photos/', blank=True)
+    photo_5 = models.ImageField(upload_to='photos/', default='photos/', blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
