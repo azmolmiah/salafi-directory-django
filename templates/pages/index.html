@@ -9,7 +9,7 @@
           <h1 class="display-4 mb-4">
             Search Salafi Organisations
           </h1>
-          <p class="lead">Use the form below to find salafi organisation's near you. Find listings from around the world for schools, stores, pilgrimage and much more. To find classes use the form in the classes page.</p>
+          <p class="lead">Use the form below to find salafi organisation's near you. Find listings from around the world for schools, stores, pilgrimage and much more.</p>
           <div class="search">
             <form action="search.html">
               <!-- Form Row 1 -->
@@ -108,7 +108,7 @@
   <!-- Lectures -->
   <section id="listings" class="py-5">
     <div class="container">
-      <h3 class="text-center mb-3">Latest Classes</h3>
+      <h3 class="text-center mb-3">Latest Classes in {{country_name}}</h3>
       <div class="row">
           <!-- Listing -->
         {% if classes %}
@@ -116,13 +116,19 @@
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
                 <img class="card-img-top" src="{{ singleClass.photo.url }}" alt="">
-                {% if singleClass.is_online %}
+                
                   <div class="card-img-overlay">
                     <h2>
-                      <span class="badge badge-secondary text-white">Online Class</span>
+                      <span class="badge badge-secondary text-white">
+                        {% if singleClass.is_online %}
+                          Online Class
+                        {% else %}
+                          Attend Class
+                        {% endif %}
+                      </span>
                     </h2>
                   </div>
-                {% endif %}
+                
                 <div class="card-body">
                   <div class="listing-heading text-center">
                     <h4 class="text-primary">{{ singleClass.title }}</h4>
@@ -153,11 +159,10 @@
                   </div>
                   
                   <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">
-                    <i class="fab fa-soundcloud fa-lg"></i>
                     {% if singleClass.is_online %}
-                      Listen Live
+                      Online Class
                     {% else %}
-                      Recording
+                      Live Recording
                     {% endif %}
                   </a>
       
@@ -187,13 +192,13 @@
           <i class="fas fa-book-open fa-4x mr-4"></i>
           <hr>
           <h3>Classes</h3>
-          <p>Search classes and attend at the centres or online. Save classes to your account. Click on location, to be redirected to google maps.</p>
+          <p>Search classes and attend at the centres or listen online. Save classes to your account. Click on location, to be redirected to google maps.</p>
         </div>
         <div class="col-md-4">
           <i class="fas fa-chalkboard-teacher fa-4x mr-4"></i>
           <hr>
           <h3>Teachers</h3>
-          <p>Stick with the scholars and the teachers, from the people of sunnah. Search for their names and their country of residence.</p>
+          <p>Stick with the scholars and teachers, from the people of sunnah. Search for their names and their country of residence.</p>
         </div>
       </div>
     </div>
