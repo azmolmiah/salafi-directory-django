@@ -5,14 +5,15 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4 mb-4">Browse Salafi Classes</h1>
+          <h1 class="display-4 ">Browse Salafi Classes</h1>
+          <p class="mb-4">Browse through classes that are on a regular schedule</p>
           <!-- form -->
           <form action="{% url 'classes' %}">
             <!-- Form Row 1 -->
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">Keywords</label>
-                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Class title, Bukhari, etc)" value="{{ values.keywords }}">
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Class title)" value="{{ values.keywords }}">
                 </div>
 
                 <div class="col-md-4 mb-3">

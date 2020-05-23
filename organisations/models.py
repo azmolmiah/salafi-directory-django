@@ -3,7 +3,7 @@ from datetime import datetime
 from django_countries.fields import CountryField
 from administrators.models import Administrator
 class Organisation(models.Model):
-    administrator = models.OneToOneField(Administrator, null=True, on_delete=models.DO_NOTHING, blank=True)
+    administrator = models.OneToOneField(Administrator, null=True, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100, blank=True)
     website = models.URLField(blank=True)
