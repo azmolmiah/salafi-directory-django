@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="showcase-inner" class="pt-3 pb-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4 mb-4">Browse Salafi Classes</h1>
+          <!-- form -->
+          <form action="{% url 'classes' %}">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Keywords</label>
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Class title, Bukhari, etc)" value="{{ values.keywords }}">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Language</label>
+                  <input type="text" name="language" class="form-control" placeholder="Language" value="{{ values.language }}">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="sr-only">Class Type</label>
+                  <select name="types" class="form-control">
+                    <option selected="true" disabled="disabled">Type (All)</option>
+                    <option value="True"
+                      {% if 'True' == values.types %}
+                        selected
+                      {% endif %}
+                    >Online</option>
+                    <option value="False"
+                      {% if 'False' == values.types %}
+                        selected
+                      {% endif %}
+                    >Classroom</option>
+                  </select>
+                </div>
+
+                
+              </div>
+              <!-- Form Row 2 -->
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label class="sr-only">Country</label>
+                    <select name="country" class="form-control">
+                      <option selected="true" disabled="disabled">Country (All)</option>
+                      {% for country in countries %}
+                        <option value="{{country.code}}"
+                          {% if country.code == values.country %}
+                            selected
+                          {% endif %}
+                        >{{country.name}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                <div class="col-md-6 mb-3">
+                    <label class="sr-only">Organisations</label>
+                    <select name="organisation" class="form-control">
+                      <option selected="true" disabled="disabled">organisations (All)</option>
+                      {% for organisation in orgs %}
+                        <option value="{{organisation.name}}"
+                          {% if organisation.name == values.name %}
+                            selected
+                          {% endif %}
+                        >{{organisation.name}}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+              </div>
+            <button class="btn btn-secondary btn-block mt-3" type="submit">Submit form</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">
+              <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active"> Browse Classes</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Listings -->
+  <section id="listings" class="py-4">
+    <div class="container">
+      <div class="row">
+          <!-- Listing -->
+          {% if classes %}
+          {% for singleClass in classes %}
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <img class="card-img-top" src="{{ singleClass.photo.url }}" alt="">
+                
+                  <div class="card-img-overlay">
+                    <h2>
+                      <span class="badge badge-secondary text-white">
+                        {% if singleClass.is_online %}
+                          Online
+                        {% else %}
+                          Classroom
+                        {% endif %}
+                      </span>
+                    </h2>
+                  </div>
+                
+                <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="text-primary">{{ singleClass.title }}</h4>
+                    {% if singleClass.is_online %}
+                      Please, use the link below.
+                    {% else %}
+                      <p class="text-secondary">
+                      <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}">{{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}</a></p>
+                    {% endif %}
+                  </div>
+                  <hr>
+                  <div class="row py-2">
+                    <div class="col-6 text-center">
+                      <i class="far fa-clock"></i> {{singleClass.time}}
+                    </div>
+                    <div class="col-6 text-center">
+                      <i class="fas fa-pound-sign"></i> 
+                      {% if singleClass.price == 0 %}
+                        Free
+                      {% else %}
+                        {{singleClass.price}}
+                      {% endif %}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="text-center mb-2">
+                    {{singleClass.organisation.name}}
+                  </div>
+                  
+                  <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">
+                    {% if singleClass.is_online %}
+                      Online Class
+                    {% else %}
+                      Live Recording
+                    {% endif %}
+                  </a>
+      
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="text-center">
+            <p>No class listings available</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

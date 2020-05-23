@@ -5,7 +5,7 @@ from teachers.models import Teacher
 
 
 class Class(models.Model):
-    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
+    organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING, null=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
     description = models.TextField()
