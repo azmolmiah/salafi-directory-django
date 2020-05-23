@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+
+{% block content %}
 <section id="showcase-inner" class="py-5 text-white">
   <div class="container">
     <div class="row text-center">
@@ -46,71 +48,36 @@
         <div class="row mb-5 thumbs">
           {% if organisation.photo_1 %}
             <div class="col-md-2">
-              <a
-                href="{{ organisation.photo_1.url }}"
-                data-lightbox="home-images"
-              >
-                <img
-                  src="{{ organisation.photo_1.url }}"
-                  alt=""
-                  class="img-fluid"
-                />
+              <a href="{{ organisation.photo_1.url }}" data-lightbox="home-images">
+                <img src="{{ organisation.photo_1.url }}" alt="" class="img-fluid"/>
               </a>
             </div>
           {% endif %}
           {% if organisation.photo_2 %}
             <div class="col-md-2">
-              <a
-                href="{{ organisation.photo_2.url }}"
-                data-lightbox="home-images"
-              >
-                <img
-                  src="{{ organisation.photo_2.url }}"
-                  alt=""
-                  class="img-fluid"
-                />
+              <a href="{{ organisation.photo_2.url }}" data-lightbox="home-images">
+                <img src="{{ organisation.photo_2.url }}" alt="" class="img-fluid"/>
               </a>
             </div>
           {% endif %}
           {% if organisation.photo_3 %}
             <div class="col-md-2">
-              <a
-                href="{{ organisation.photo_3.url }}"
-                data-lightbox="home-images"
-              >
-                <img
-                  src="{{ organisation.photo_3.url }}"
-                  alt=""
-                  class="img-fluid"
-                />
+              <a href="{{ organisation.photo_3.url }}" data-lightbox="home-images">
+                <img src="{{ organisation.photo_3.url }}" alt="" class="img-fluid"/>
               </a>
             </div>
           {% endif %}
           {% if organisation.photo_4 %}
             <div class="col-md-2">
-              <a
-                href="{{ organisation.photo_4.url }}"
-                data-lightbox="home-images"
-              >
-                <img
-                  src="{{ organisation.photo_4.url }}"
-                  alt=""
-                  class="img-fluid"
-                />
+              <a href="{{ organisation.photo_4.url }}" data-lightbox="home-images">
+                <img src="{{ organisation.photo_4.url }}" alt="" class="img-fluid"/>
               </a>
             </div>
           {% endif %}
           {% if organisation.photo_5 %}
             <div class="col-md-2">
-              <a
-                href="{{ organisation.photo_5.url }}"
-                data-lightbox="home-images"
-              >
-                <img
-                  src="{{ organisation.photo_5.url }}"
-                  alt=""
-                  class="img-fluid"
-                />
+              <a href="{{ organisation.photo_5.url }}" data-lightbox="home-images">
+                <img src="{{ organisation.photo_5.url }}" alt="" class="img-fluid"/>
               </a>
             </div>
           {% endif %}

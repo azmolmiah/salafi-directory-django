@@ -5,8 +5,71 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4">Browse Salafi Organisations</h1>
-          <p class="lead">Search the people of sunnah and safeguard your religion, by sticking to the listed salafi organisaton's.</p>
+          <h1 class="display-4 mb-4">Browse Salafi Organisations</h1>
+          <form action="{% url 'organisations' %}">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">Keywords</label>
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Manchester, Sunnah, etc)" value="{{ values.keywords }}">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">Town/City</label>
+                  <input type="text" name="city" class="form-control" placeholder="Town/City" value="{{ values.city }}">
+                </div>
+
+                
+              </div>
+              <!-- Form Row 2 -->
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label class="sr-only">Country</label>
+                    <select name="country" class="form-control">
+                      <option selected="true" disabled="disabled">Country (All)</option>
+                      {% for country in countries %}
+                        <option value="{{country.code}}"
+                          {% if country.code == values.country %}
+                            selected
+                          {% endif %}
+                        >{{country.name}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">Type</label>
+                  <select name="types" class="form-control">
+                    <option selected="true" disabled="disabled">Type (All)</option>
+                    <option value="Centre"
+                      {% if 'Centre' == values.types %}
+                        selected
+                      {% endif %}
+                    >Centre</option>
+                    <option value="School"
+                      {% if 'School' == values.types %}
+                        selected
+                      {% endif %}
+                    >School</option>
+                    <option value="Store"
+                      {% if 'Store' == values.types %}
+                        selected
+                      {% endif %}
+                    >Store</option>
+                    <option value="Charity"
+                      {% if 'Charity' == values.types %}
+                        selected
+                      {% endif %}
+                    >Charity</option>
+                    <option value="Pilgrimage"
+                      {% if 'Pilgrimage' == values.types %}
+                        selected
+                      {% endif %}
+                    >Pilgrimage</option>
+                  </select>
+                </div>
+              </div>
+            <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+          </form>
         </div>
       </div>
     </div>
