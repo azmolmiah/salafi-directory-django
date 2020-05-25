@@ -11,18 +11,32 @@
           <form action="{% url 'lectures' %}">
             <!-- Form Row 1 -->
             <div class="form-row">
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                   <label class="sr-only">Keywords</label>
-                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Class Title)" value="{{ values.keywords }}">
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Lecture Title)" value="{{ values.keywords }}">
                 </div>
 
-                <div class="col-md-4 mb-3">
+                <div class="col-md-3 mb-3">
                   <label class="sr-only">Language</label>
                   <input type="text" name="language" class="form-control" placeholder="Language" value="{{ values.language }}">
                 </div>
 
-                <div class="col-md-4 mb-3">
-                    <label class="sr-only">Class Type</label>
+                <div class="col-md-3 mb-3">
+                  <label class="sr-only">Country</label>
+                  <select name="country" class="form-control">
+                    <option selected="true" disabled="disabled">Country (All)</option>
+                    {% for country in countries %}
+                      <option value="{{country.code}}"
+                        {% if country.code == values.country %}
+                          selected
+                        {% endif %}
+                      >{{country.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label class="sr-only">Lecture Type</label>
                   <select name="types" class="form-control">
                     <option selected="true" disabled="disabled">Type (All)</option>
                     <option value="True"
@@ -42,23 +56,10 @@
               </div>
               <!-- Form Row 2 -->
               <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label class="sr-only">Country</label>
-                    <select name="country" class="form-control">
-                      <option selected="true" disabled="disabled">Country (All)</option>
-                      {% for country in countries %}
-                        <option value="{{country.code}}"
-                          {% if country.code == values.country %}
-                            selected
-                          {% endif %}
-                        >{{country.name}}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-5 mb-3">
                   <label class="sr-only">Organisations</label>
                   <select name="organisation" class="form-control">
-                    <option selected="true" disabled="disabled">organisations (All)</option>
+                    <option selected="true" disabled="disabled">Centres (All)</option>
                       {% for organisation in orgs %}
                         <option value="{{organisation.name}}"
                           {% if organisation.name == values.organisation %}
@@ -68,9 +69,16 @@
                       {% endfor %}
                   </select>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-5 mb-3">
+                  <div class="input-group input-daterange">
+                    <input type="date" name="start_date" class="form-control" value="{{ values.start_date }}">
+                    <div class="input-group-append"><span class="input-group-text">to</span></div>
+                    <input type="date" name="end_date" class="form-control" value="{{ values.end_date }}">
+                  </div>
+                </div>
+                <div class="col-md-2 mb-3">
                   <label for="date-input" class="sr-only">Date</label>
-                  <input class="form-control" type="date"  id="date-input">
+                  <input type="date" name="date" class="form-control" id="date-input" value="{{ values.date }}">
                 </div>
               </div>
             <button class="btn btn-secondary btn-block mt-3" type="submit">Submit form</button>
@@ -100,16 +108,16 @@
     <div class="container">
       <div class="row">
           <!-- Listing -->
-          {% if classes %}
-          {% for singleClass in classes %}
+          {% if lectures %}
+          {% for lecture in lectures %}
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img class="card-img-top" src="{{ singleClass.photo.url }}" alt="">
+                <img class="card-img-top" src="{{ lecture.photo.url }}" alt="">
                 
                   <div class="card-img-overlay">
                     <h2>
                       <span class="badge badge-secondary text-white">
-                        {% if singleClass.is_online %}
+                        {% if lecture.is_online %}
                           Online
                         {% else %}
                           Classroom
@@ -120,35 +128,35 @@
                 
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{ singleClass.title }}</h4>
-                    {% if singleClass.is_online %}
+                    <h4 class="text-primary">{{ lecture.title }}</h4>
+                    {% if lecture.is_online %}
                       Please, use the link below.
                     {% else %}
                       <p class="text-secondary">
-                      <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}">{{singleClass.organisation.address}}, {{singleClass.organisation.zipcode}}</a></p>
+                      <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{lecture.organisation.address}}, {{lecture.organisation.zipcode}}">{{lecture.organisation.address}}, {{lecture.organisation.zipcode}}</a></p>
                     {% endif %}
                   </div>
                   <hr>
                   <div class="row py-2">
                     <div class="col-6 text-center">
-                      <i class="far fa-clock"></i> {{singleClass.time}}
+                      <i class="far fa-clock"></i> {{lecture.time}}
                     </div>
                     <div class="col-6 text-center">
                       <i class="fas fa-pound-sign"></i> 
-                      {% if singleClass.price == 0 %}
+                      {% if lecture.price == 0 %}
                         Free
                       {% else %}
-                        {{singleClass.price}}
+                        {{lecture.price}}
                       {% endif %}
                     </div>
                   </div>
                   <hr>
                   <div class="text-center mb-2">
-                    {{singleClass.organisation.name}}
+                    {{lecture.organisation.name}}
                   </div>
                   
-                  <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">
-                    {% if singleClass.is_online %}
+                  <a href="{{ lecture.link }}" class="btn btn-primary btn-block">
+                    {% if lecture.is_online %}
                       Online Class
                     {% else %}
                       Live Recording

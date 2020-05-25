@@ -6,13 +6,13 @@ from teachers.models import Teacher
 
 def one_day():
   return datetime.today() + timedelta(days=1)
-
 class Lecture(models.Model):
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, null=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
     description = models.TextField()
-    dateTime = models.DateTimeField(auto_now=False,default=timezone.now)
+    date = models.DateField(default=datetime.today)
+    time = models.TimeField(default=timezone.now)
     expiration_date = models.DateField(default=one_day)
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     language = models.CharField(max_length=200, default='English')

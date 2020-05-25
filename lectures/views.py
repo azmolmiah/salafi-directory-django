@@ -1,3 +1,5 @@
+import pytz
+import datetime
 from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django_countries import countries
@@ -40,6 +42,21 @@ def index(request):
         organisation = request.GET['organisation']
         if organisation:
             queryset_list = queryset_list.filter(organisation__name=organisation)
+    
+    # Exact date
+    if 'date' in request.GET:
+        date = request.GET['date']
+        if date:
+            queryset_list = queryset_list.filter(date__iexact=date)
+
+    # Date range
+    if 'start_date' in request.GET:
+        if 'end_date' in request.GET:
+            start_date = request.GET['start_date']
+            end_date = request.GET['end_date']
+            if start_date:
+                if end_date:
+                    queryset_list = queryset_list.filter(date__gte=start_date, date__lte=end_date)
 
     paginator = Paginator(queryset_list, 6)
     page = request.GET.get('page')
@@ -50,4 +67,4 @@ def index(request):
         'countries': countries,
         'values': request.GET
     }
-    return render(request, 'lectures/lectures.html')
+    return render(request, 'lectures/lectures.html', context)
