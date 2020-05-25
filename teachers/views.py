@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Teacher
+
+def index(request):
+  return render(request, 'teachers/teachers.html')

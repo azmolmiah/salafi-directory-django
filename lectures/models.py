@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from django.db import models
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 from organisations.models import Organisation
 from teachers.models import Teacher
 
@@ -21,6 +22,10 @@ class Lecture(models.Model):
     photo = models.ImageField(upload_to='lectures/', default='lectures/')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def clean(self):
+      if self.date > self.expiration_date:
+        raise ValidationError("Date cannot be ahead of expiration date")
 
     def __str__(self):
         return self.title
