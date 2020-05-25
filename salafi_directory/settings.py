@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'organisations.apps.OrganisationsConfig',
     'classes.apps.ClassesConfig',
+    'lectures.apps.LecturesConfig',
     'teachers.apps.TeachersConfig',
     'administrators.apps.AdministratorsConfig',
     'django_admin_listfilter_dropdown',

@@ -5,13 +5,14 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4 mb-4">Browse Salafi Organisations</h1>
+          <h1 class="display-4">Browse Salafi Organisations</h1>
+          <p class="mb-4">Browse from different parts of the world. Listings include centres, schools, stores, charity and pilgrimage organisations.</p>
           <form action="{% url 'organisations' %}">
             <!-- Form Row 1 -->
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                   <label class="sr-only">Keywords</label>
-                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Manchester, Sunnah, etc)" value="{{ values.keywords }}">
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Organisation Name)" value="{{ values.keywords }}">
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -149,7 +150,7 @@
           {% endfor %}
         {% else %}
           <div class="container">
-            <p class="text-center">Sorry, no Organisation listings available</p>
+            <p class="text-center">Sorry, no organisation listings available</p>
           </div>          
         {% endif %}
       </div>  

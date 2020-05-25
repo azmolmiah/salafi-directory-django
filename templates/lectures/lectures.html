@@ -5,10 +5,10 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4 ">Browse Salafi Classes</h1>
-          <p class="mb-4">Browse through classes that are on a regular schedule.</p>
+          <h1 class="display-4 ">Browse Salafi Lectures</h1>
+          <p class="mb-4">Browse through current and future Lectures. For past lectures, please visit centre links.</p>
           <!-- form -->
-          <form action="{% url 'classes' %}">
+          <form action="{% url 'lectures' %}">
             <!-- Form Row 1 -->
             <div class="form-row">
                 <div class="col-md-4 mb-3">
@@ -42,7 +42,7 @@
               </div>
               <!-- Form Row 2 -->
               <div class="form-row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                     <label class="sr-only">Country</label>
                     <select name="country" class="form-control">
                       <option selected="true" disabled="disabled">Country (All)</option>
@@ -55,10 +55,10 @@
                       {% endfor %}
                     </select>
                   </div>
-                <div class="col-md-6 mb-3">
-                    <label class="sr-only">Organisations</label>
-                    <select name="organisation" class="form-control">
-                      <option selected="true" disabled="disabled">organisations (All)</option>
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Organisations</label>
+                  <select name="organisation" class="form-control">
+                    <option selected="true" disabled="disabled">organisations (All)</option>
                       {% for organisation in orgs %}
                         <option value="{{organisation.name}}"
                           {% if organisation.name == values.organisation %}
@@ -66,7 +66,11 @@
                           {% endif %}
                         >{{organisation.name}}</option>
                       {% endfor %}
-                    </select>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="date-input" class="sr-only">Date</label>
+                  <input class="form-control" type="date"  id="date-input">
                 </div>
               </div>
             <button class="btn btn-secondary btn-block mt-3" type="submit">Submit form</button>
@@ -85,7 +89,7 @@
             <a href="{% url 'index' %}">
               <i class="fas fa-home"></i> Home</a>
           </li>
-          <li class="breadcrumb-item active"> Browse Classes</li>
+          <li class="breadcrumb-item active"> Browse Lectures</li>
         </ol>
       </nav>
     </div>
@@ -157,7 +161,7 @@
           {% endfor %}
         {% else %}
           <div class="container text-center">
-            <p>Sorry, no class listings available</p>
+            <p>Sorry, no lecture listings available</p>
           </div>
         {% endif %}
       </div>
