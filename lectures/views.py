@@ -1,5 +1,3 @@
-import pytz
-import datetime
 from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django_countries import countries
