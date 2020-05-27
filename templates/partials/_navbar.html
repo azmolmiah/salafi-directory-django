@@ -9,7 +9,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li 
                     {% if '/' == request.path %}
                         class="nav-item active mr-3"
@@ -63,19 +63,6 @@
                     {% endif %}
                 >
                     <a class="nav-link" href="{% url 'teachers' %}">Teachers</a>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item mr-3">
-                    <a class="nav-link" href="register.html">
-                    <i class="fas fa-user-plus"></i> Register</a>
-                </li>
-                <li class="nav-item mr-3">
-                    <a class="nav-link" href="login.html">
-                    <i class="fas fa-sign-in-alt"></i>
-
-                    Login</a>
                 </li>
             </ul>
         </div>

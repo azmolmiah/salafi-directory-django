@@ -4,10 +4,12 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 from organisations.models import Organisation
 from teachers.models import Teacher
+from django.contrib.auth import get_user_model
 
 def one_day():
   return datetime.today() + timedelta(days=1)
 class Lecture(models.Model):
+    author = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, null=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)

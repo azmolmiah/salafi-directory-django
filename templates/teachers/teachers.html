@@ -77,7 +77,8 @@
           {% if teachers %}
           {% for teacher in teachers %}
             <div class="col-md-3">
-              <h6><i class="fas fa-chalkboard-teacher"></i> {{ teacher.name }}</h6>
+              <h6> {{ teacher.name }}</h6>
+              <hr>
               <p><i class="fas fa-th-large"></i> {{ teacher.type }}<br/><i class="fas fa-map-marker-alt"></i> {{ teacher.country.name }}<br/><i class="fab fa-twitter"></i> <a href="{{teacher.twitter}}">Visit Page</a></p>
             </div>        
           {% endfor %}

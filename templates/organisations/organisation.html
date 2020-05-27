@@ -45,7 +45,7 @@
           class="img-main img-fluid mb-3 h-50"
         />
         <!-- Thumbnails -->
-        <div class="row mb-5 thumbs">
+        <div class="row mb-2 thumbs">
           {% if organisation.photo_1 %}
           <div class="col-md-2">
             <a
@@ -114,7 +114,7 @@
           {% endif %}
         </div>
         <!-- Fields -->
-        <div class="row mb-5 fields">
+        <div class="row mb-2 fields">
           <div class="col-md-6">
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-secondary">
@@ -130,8 +130,11 @@
               </li>
               <li class="list-group-item text-secondary">
                 <i class="fas fa-quran text-secondary"></i> Lectures:
-                <span class="float-right">2</span>
+                <span class="float-right"
+                  >{{organisation.lecture_set.count}}</span
+                >
               </li>
+              {% if organisation.phone %}
               <li class="list-group-item text-secondary">
                 <i class="fas fa-phone"></i> Phone:
                 <span class="float-right"
@@ -140,7 +143,7 @@
                   ></span
                 >
               </li>
-              {% if organisation.website %}
+              {% endif %} {% if organisation.website %}
               <li class="list-group-item text-secondary">
                 <i class="fas fa-globe"></i> Website:
                 <span class="float-right"
@@ -148,10 +151,10 @@
                 >
               </li>
               {% endif %}
-              <li class="list-group-item text-secondary">
+              <!-- <li class="list-group-item text-secondary">
                 <i class="fas fa-calendar"></i> Listing Date:
                 <span class="float-right">{{organisation.created.date}}</span>
-              </li>
+              </li> -->
             </ul>
           </div>
           <div class="col-md-6">
