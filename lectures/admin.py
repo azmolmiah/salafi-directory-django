@@ -7,7 +7,7 @@ class LectureAdmin(admin.ModelAdmin):
     qs = super().get_queryset(request)
     if request.user.is_superuser:
       return qs
-    return qs.filter(author=request.user)
+    return qs.filter(account=request.user)
 
   list_display = ('title', 'teacher', 'organisation', 'is_online')
   list_filter = ('teacher',)

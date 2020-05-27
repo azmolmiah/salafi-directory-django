@@ -1,7 +1,7 @@
 from django.db import models
 from django_countries.fields import CountryField
 class Teacher(models.Model):
-    teachers = models.ManyToManyField('self', null=True, blank=True)
+    teachers = models.ManyToManyField('self', blank=True)
     name = models.CharField(max_length=200)
     country = CountryField()
     twitter = models.URLField(blank=True)

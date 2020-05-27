@@ -2,9 +2,10 @@ from django.db import models
 from django.utils import timezone
 from organisations.models import Organisation
 from teachers.models import Teacher
-
+from django.contrib.auth import get_user_model
 
 class Class(models.Model):
+    account = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, null=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)

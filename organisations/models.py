@@ -2,7 +2,10 @@ from django.db import models
 from datetime import datetime
 from django_countries.fields import CountryField
 from administrators.models import Administrator
+from django.contrib.auth import get_user_model
+
 class Organisation(models.Model):
+    account = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)
     administrator = models.OneToOneField(Administrator, null=True, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100, blank=True)
