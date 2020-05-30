@@ -58,7 +58,7 @@ def organisation(request, organisation_id):
     send_mail(
         f'{organisation.name} Inquiry',
         f'Name: {name},\nEmail: {email},\nPhone: {phone},\nMessage: {message}',
-        'info@salafidirectory.co.uk',
+        email,
         [organisation.email, 'azmol.miah.general@gmail.com'],
         fail_silently=False
     )
