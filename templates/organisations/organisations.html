@@ -102,7 +102,7 @@
             <!-- Listing -->
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img class="card-img-top" src="{{organisation.logo.url }}" alt="">
+                <img style="width: 70% !important; height: 70% !important; margin: auto;"  class="card-img-top mt-4" src="{{organisation.logo.url }}" alt="">
                 <!-- <div class="card-img-overlay">
                   See if you can add class or lecture on when datetime.now == classes.time
                   <h2>
@@ -111,36 +111,44 @@
                 </div> -->
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{ organisation.name }}</h4>
+                    <h5 class="text-primary">{{ organisation.name }}</h5>
                     <p class="text-secondary">
                       <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{organisation.address}}, {{organisation.zipcode}}">{{organisation.address}}, {{organisation.zipcode}}</a> </p>
                   </div>
                   <hr>
-                  <div class="row py-2">
+                  <div class="row py-1">
                     <div class="col-6">
                       <i class="fas fa-th-large text-secondary"></i> Type: {{organisation.types}}</div>
                     <div class="col-6">
                       <i class="fas fa-flag text-secondary"></i> Country: {{organisation.country}}</div>
                   </div>
-                  <div class="row py-2 ">
-                    <div class="col-6">
-                      <i class="fas fa-chalkboard-teacher text-secondary"></i> Classes: {{organisation.class_set.count}}</div>
-                    <div class="col-6">
-                      <i class="fas fa-quran text-secondary"></i> Lectures: {{organisation.lecture_set.count}}</div>
-                  </div>
+                  {% if organisation.types == 'Centre' %}
+                    <div class="row py-1 ">
+                      <div class="col-6">
+                        <i class="fas fa-chalkboard-teacher text-secondary"></i> Classes: {{organisation.class_set.count}}</div>
+                      <div class="col-6">
+                        <i class="fas fa-quran text-secondary"></i> Lectures: {{organisation.lecture_set.count}}</div>
+                    </div>
+                  {% endif %}
                   <hr>
-                  <div class="row py-2 text-secondary">
+                  <div class="row py-1 text-secondary">
                     <div class="col-md-12">
                       <div class="social text-center">
+                        {% if organisation.twitter %}
                           <a href="{{ organisation.twitter }}">
-                        <i class="fab fa-twitter fa-2x"></i>
-                        </a>
-                        <a href="{{ organisation.facebook }}">
-                          <i class="fab fa-facebook fa-2x"></i>
-                        </a>
-                        <a href="{{ organisation.soundcloud }}">
-                          <i class="fab fa-soundcloud fa-2x"></i>
-                        </a>
+                            <i class="fab fa-twitter fa-lg"></i>
+                          </a>
+                        {% endif %}
+                        {% if organisation.facebook %}
+                          <a href="{{ organisation.facebook }}">
+                            <i class="fab fa-facebook fa-lg"></i>
+                          </a>
+                        {% endif %}
+                        {% if organisation.soundcloud %}
+                          <a href="{{ organisation.soundcloud }}">
+                            <i class="fab fa-soundcloud fa-lg"></i>
+                          </a>
+                        {% endif %}
                       </div>
                     </div>
                   </div>

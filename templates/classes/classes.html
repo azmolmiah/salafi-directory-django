@@ -102,7 +102,7 @@
           {% for singleClass in classes %}
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img class="card-img-top" src="{{ singleClass.photo.url }}" alt="">
+                <img style="width: 70% !important; height: 70% !important; margin: auto;" class="card-img-top mt-4" src="{{ singleClass.photo.url }}" alt="">
                 
                   <div class="card-img-overlay">
                     <h2>
@@ -118,7 +118,9 @@
                 
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{ singleClass.title }}</h4>
+                    <h5 class="text-center mb-1">
+                      {{singleClass.organisation.name}}
+                    </h5>
                     {% if singleClass.is_online %}
                       Please, use the link below.
                     {% else %}
@@ -127,7 +129,10 @@
                     {% endif %}
                   </div>
                   <hr>
-                  <div class="row py-2">
+                  <h5 class="text-primary">{{ singleClass.title }}</h5>
+                  <p>{{ singleClass.description }}</p>
+                  <hr>
+                  <div class="row">
                     <div class="col-4 text-center">
                       <i class="far fa-clock"></i> {{singleClass.time}}
                     </div>
@@ -143,11 +148,7 @@
                       {% endif %}
                     </div>
                   </div>
-                  <hr>
-                  <div class="text-center mb-2">
-                    {{singleClass.organisation.name}}
-                  </div>
-                  
+                  <hr>                 
                   <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">
                     {% if singleClass.is_online %}
                       Online Class

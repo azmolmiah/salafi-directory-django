@@ -8,8 +8,8 @@ class Class(models.Model):
     account = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, null=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
-    title = models.CharField(max_length=200)
-    description = models.TextField()
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=132)
     time = models.TimeField(default=timezone.now)
     days = models.CharField(max_length=20, default='Monday', choices=[(
         'Monday', 'Monday'), ('Tuesday', 'Tuesday'), ('Wednesday', 'Wednesday'), ('Thursday', 'Thursday'), ('Friday', 'Friday'), ('Saturday', 'Saturday'), ('Sunday', 'Sunday')])

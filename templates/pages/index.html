@@ -9,9 +9,9 @@
       <div class="home-search p-5">
         <div class="overlay p-5">
           <h1 class="display-4 mb-4">
-            Search Salafi Organisations
+            أهلا وسهلا بك إلى دليل السلفيين
           </h1>
-          <p class="lead">Use the form below to find salafi organisation's near you. Find listings from around the world for schools, stores, pilgrimage and much more.</p>
+          <p class="lead">Use the form below to find salafi organisation's near you. Find listings from around the world.</p>
           <div class="search">
             <form action="{% url 'organisations' %}">
               <!-- Form Row 1 -->
@@ -59,17 +59,17 @@
     </div>
   </section>
 
-  <!-- Lectures -->
+  <!-- Classes -->
   <section id="listings" class="py-5">
     <div class="container">
-      <h3 class="text-center mb-3">Latest Classes in {{country_name}}</h3>
+      {% if classes %}
+      <h3 class="text-center my-3">Latest Classes in {{country_name}}</h3>
       <div class="row">
-          <!-- Listing -->
-        {% if classes %}
+          <!-- Class Listing -->
           {% for singleClass in classes %}
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img class="card-img-top" src="{{ singleClass.photo.url }}" alt="">
+                <img style="width: 70% !important; height: 70% !important; margin: auto;" class="card-img-top mt-4" src="{{ singleClass.photo.url }}" alt="">
                 
                   <div class="card-img-overlay">
                     <h2>
@@ -85,7 +85,9 @@
                 
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{ singleClass.title }}</h4>
+                    <h5 class="mb-1">
+                      {{singleClass.organisation.name}}
+                    </h5>
                     {% if singleClass.is_online %}
                       Please, use the link below.
                     {% else %}
@@ -94,11 +96,17 @@
                     {% endif %}
                   </div>
                   <hr>
-                  <div class="row py-2">
-                    <div class="col-6 text-center">
+                    <h5 class="text-primary">{{ singleClass.title }}</h5>
+                    <p>{{ singleClass.description }}</p>
+                  <hr>
+                  <div class="row">
+                    <div class="col-4 text-center">
                       <i class="far fa-clock"></i> {{singleClass.time}}
                     </div>
-                    <div class="col-6 text-center">
+                    <div class="col-5 text-center">
+                      <i class="fas fa-calendar-alt"></i> {{singleClass.days}}'s
+                    </div>
+                    <div class="col-3 text-center">
                       <i class="fas fa-pound-sign"></i> 
                       {% if singleClass.price == 0 %}
                         Free
@@ -107,11 +115,7 @@
                       {% endif %}
                     </div>
                   </div>
-                  <hr>
-                  <div class="text-center mb-2">
-                    {{singleClass.organisation.name}}
-                  </div>
-                  
+                  <hr>                 
                   <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">
                     {% if singleClass.is_online %}
                       Online Class
@@ -124,12 +128,78 @@
               </div>
             </div>
           {% endfor %}
-        {% else %}
-          <div class="bg-primary">
-            <p>No Class listings available</p>
-          </div>
-        {% endif %}
+      </div> <!-- Class listing end -->
+      {% endif %}
+
+      {% if lectures %}
+      <h3 class="text-center my-4">Latest Lectures in {{country_name}}</h3>
+      <div class="row">
+        <!-- Listing -->
+        
+          {% for lecture in lectures %}
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <img class="card-img-top" src="{{ lecture.photo.url }}" alt="">
+                
+                  <div class="card-img-overlay">
+                    <h2>
+                      <span class="badge badge-secondary text-white">
+                        {% if lecture.is_online %}
+                          Online
+                        {% else %}
+                          Classroom
+                        {% endif %}
+                      </span>
+                    </h2>
+                  </div>
+                
+                <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="text-primary">{{ lecture.title }}</h4>
+                    {% if lecture.is_online %}
+                      Please, use the link below.
+                    {% else %}
+                      <p class="text-secondary">
+                      <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{lecture.organisation.address}}, {{lecture.organisation.zipcode}}">{{lecture.organisation.address}}, {{lecture.organisation.zipcode}}</a></p>
+                    {% endif %}
+                  </div>
+                  <hr>
+                  <div class="row py-4" >
+                    <div class="col-4 text-center">
+                      <i class="far fa-clock"></i> {{lecture.time}}
+                    </div>
+                    <div class="col-4 text-center">
+                      <i class="fas fa-calendar-alt"></i> {{lecture.date}}
+                    </div>
+                    <div class="col-4 text-center">
+                      <i class="fas fa-pound-sign"></i> 
+                      {% if lecture.price == 0 %}
+                        Free
+                      {% else %}
+                        {{lecture.price}}
+                      {% endif %}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="mb-2">{{lecture.description}}</div>
+                  <div class="text-center mb-2">
+                    {{lecture.organisation.name}}
+                  </div>
+                  
+                  <a href="{{ lecture.link }}" class="btn btn-primary btn-block">
+                    {% if lecture.is_online %}
+                      Online Class
+                    {% else %}
+                      Live Recording
+                    {% endif %}
+                  </a>
+      
+                </div>
+              </div>
+            </div>
+          {% endfor %}
       </div>
+      {% endif %}
     </div>
   </section>
 

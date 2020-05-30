@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django_countries import countries
-
+from django.core.mail import send_mail
 from .models import Organisation
 
 
@@ -47,4 +47,19 @@ def organisation(request, organisation_id):
     context = {
         'organisation': organisation
     }
+
+    name = request.POST.get('name')
+    phone = request.POST.get('phone')
+    email = request.POST.get('email')
+    message = request.POST.get('message')
+    orgemail = request.POST.get('organisation_email')
+
+    # Send mail
+    send_mail(
+        f'{organisation.name} Inquiry',
+        f'Name: {name},\nEmail: {email},\nPhone: {phone},\nMessage: {message}',
+        'info@salafidirectory.co.uk',
+        [organisation.email, 'azmol.miah.general@gmail.com'],
+        fail_silently=False
+    )
     return render(request, 'organisations/organisation.html', context)

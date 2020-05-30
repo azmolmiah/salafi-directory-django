@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.gis.geoip2 import GeoIP2
 from django_countries import countries
 from classes.models import Class
+from lectures.models import Lecture
 from organisations.models import Organisation
 
 def index(request):
@@ -11,8 +12,10 @@ def index(request):
     country_name = g.country_name('15.194.1.177')
     organisation = Organisation.objects.filter(country='GB')
     classes = Class.objects.all().filter(organisation__in=organisation).order_by('-created')[:3]
+    lectures = Lecture.objects.all().filter(organisation__in=organisation).order_by('-created')[:3]
     context = {
         'classes': classes,
+        'lectures': lectures,
         'country_name': country_name,
         'countries': countries
     }
