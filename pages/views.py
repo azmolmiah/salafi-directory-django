@@ -8,9 +8,9 @@ from organisations.models import Organisation
 def index(request):
     ip = request.META.get('REMOTE_ADDR')
     g = GeoIP2('GeoLite2-Country_20200519')
-    country_code = g.country_code('15.194.1.177')
-    country_name = g.country_name('15.194.1.177')
-    organisation = Organisation.objects.filter(country='GB')
+    country_code = g.country_code(f'{ip}')
+    country_name = g.country_name(f'{ip}')
+    organisation = Organisation.objects.filter(country=country_code)
     classes = Class.objects.all().filter(organisation__in=organisation).order_by('-created')[:3]
     lectures = Lecture.objects.all().filter(organisation__in=organisation).order_by('-created')[:3]
     context = {
