@@ -141,14 +141,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
-# Email config
-EMAIL_HOST='mail.lcn.com'
-EMAIL_PORT= 587
-EMAIL_HOST_USER ='info@salafidirectory.co.uk'
-EMAIL_HOST_PASSWORD='(Salafidirectory123)'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-
 try:
     from .local_settings import *
 except ImportError:
