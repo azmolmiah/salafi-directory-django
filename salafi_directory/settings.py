@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'classes.apps.ClassesConfig',
     'lectures.apps.LecturesConfig',
     'teachers.apps.TeachersConfig',
+    'maps.apps.MapsConfig',
     'administrators.apps.AdministratorsConfig',
     'django_admin_listfilter_dropdown',
     'django.contrib.admin',
@@ -140,8 +141,3 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass

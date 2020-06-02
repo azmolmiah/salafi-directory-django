@@ -1,8 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django_countries import countries
-from django.core.mail import send_mail
-from django.contrib import messages
 from .models import Organisation
 
 
@@ -48,21 +46,5 @@ def organisation(request, organisation_id):
     context = {
         'organisation': organisation
     }
-
-    if request.method == 'POST':
-        name = request.POST['name']
-        phone = request.POST['phone']
-        email = request.POST['email']
-        message = request.POST['message']
-
-        # Send mail
-        send_mail(
-            f'{organisation.name} Inquiry',
-            f'Name: {name},\nEmail: {email},\nPhone: {phone},\nMessage: {message}',
-            email,
-            [organisation.email, 'azmol.miah.general@gmail.com'],
-            fail_silently=False
-        )
-        messages.success(request, f'Your message has been submitted, {organisation.name} will get back to you soon.')
 
     return render(request, 'organisations/organisation.html', context)
