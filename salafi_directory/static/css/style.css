@@ -69,6 +69,10 @@ img {
 .listing-preview a {
   position: relative; }
 
+.H_ib_content {
+  min-width: 11em !important;
+}
+
 @media (max-width: 991px) {
   #showcase {
     padding-top: 4rem; }

@@ -1,27 +1,28 @@
 {% extends 'base.html' %} {% load static %} 
-{% block title %} | About {% endblock %} 
+{% block title %} | Maps {% endblock %} 
 {% block content %}
-  <div class="container py-5">
-    <div id="map" style="width:100%; height:400px" class="chart"></div>
+  <div class="container pb-5 ">
+    <div class="text-center mb-4">
+    <h1 class="display-4">Salafi Maps</h1>
+    Click on the markers for details
+  </div>
+  <div id="map" style="width:100%; height:700px;" class="chart"></div>
   </div>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-clustering.js"></script>
   <script>
     function addMarkerToGroup(group, coordinate, html) {
-      var marker = new H.map.Marker(coordinate);
+      const marker = new H.map.Marker(coordinate);
       // add custom data to the marker
       marker.setData(html);
       group.addObject(marker);
     }
     
-    function addInfoBubble(map, data) {
-      var group = new H.map.Group();
-    
+    function addInfoBubble(map, details) {
+      const group = new H.map.Group();
       map.addObject(group);
-    
       // add 'tap' event listener, that opens info bubble, to the group
       group.addEventListener('tap', function (evt) {
         // event target is the marker itself, group is a parent event target
@@ -34,10 +35,10 @@
         ui.addBubble(bubble);
       }, false);
 
-      data.map(item => {
+      details.map(item => {
         console.log(item)
-        addMarkerToGroup(group, {lat:item[0], lng:item[1]},
-        `<div >lat: ${item[0]}, lng: ${item[1]}</div>`);
+        addMarkerToGroup(group, {lat:item.lat, lng:item.lng},
+        `<div>${item.name}</div> <hr/> ${item.address}, <br> ${item.city}, <br> ${item.zipcode}`);
       })
     
     }
@@ -62,9 +63,9 @@
 
     var ui = H.ui.UI.createDefault(map, defaultLayers);
 
-    var latlng = '{{latlng}}'
-    console.log(JSON.parse(latlng))
-    addInfoBubble(map, JSON.parse(latlng));
+    var details = JSON.parse('{{ latlng|safe }}')
+    
+    addInfoBubble(map, details);
    
 
   </script>
