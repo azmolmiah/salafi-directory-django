@@ -13,8 +13,25 @@
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
   <script>
+    var details = JSON.parse('{{ latlng|safe }}')
+
     function addMarkerToGroup(group, coordinate, html) {
-      const marker = new H.map.Marker(coordinate);
+      let myMarker;
+      details.map(item => {
+        if(item.types == 'Centre'){
+          myMarker = '<i class="fas fa-map-pin"></i>';
+        } else if (item.types == 'Store'){
+          myMarker = '<i class="fas fa-store"></i>';
+        } else if (item.types == 'School'){
+          myMarker = '<i class="fas fa-school"></i>';
+        } else if (item.types == 'Pilgrimage'){
+          myMarker = '<i class="fas fa-plane"></i>';
+        } else if (item.types == 'Charity'){
+          myMarker = '<i class="fas fa-donate"></i>';
+        }
+      })
+      let icon = new H.map.DomIcon(myMarker);
+      let marker = new H.map.DomMarker(coordinate, { icon: icon });
       // add custom data to the marker
       marker.setData(html);
       group.addObject(marker);
@@ -36,9 +53,8 @@
       }, false);
 
       details.map(item => {
-        console.log(item)
         addMarkerToGroup(group, {lat:item.lat, lng:item.lng},
-        `<div>${item.name}</div> <hr/> ${item.address}, <br> ${item.city}, <br> ${item.zipcode}`);
+        `<div>${item.types}</div><hr/><div>${item.name}</div> <hr/> ${item.address}, <br> ${item.city}, <br> ${item.zipcode}`);
       })
     
     }
@@ -62,8 +78,6 @@
     var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
     var ui = H.ui.UI.createDefault(map, defaultLayers);
-
-    var details = JSON.parse('{{ latlng|safe }}')
     
     addInfoBubble(map, details);
    

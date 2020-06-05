@@ -73,6 +73,22 @@ img {
   min-width: 11em !important;
 }
 
+.fa-store {
+  color: crimson;
+}
+
+.fa-school {
+  color: cadetblue;
+}
+
+.fa-plane {
+  color: coral;
+}
+
+.fa-donate {
+  color: chartreuse;
+}
+
 @media (max-width: 991px) {
   #showcase {
     padding-top: 4rem; }

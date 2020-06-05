@@ -12,7 +12,7 @@ def index(request):
       URL = "https://geocode.search.hereapi.com/v1/geocode"
       # Acquire from developer.here.com
       api_key = 'LNGJKlqzncGWlpgjAy0svm4OGEl0FdN2Cpk_XJrQOQs'
-      PARAMS = {'apikey': api_key, 'q': organisation.address + ',' + organisation.city + ',' + organisation.zipcode + ' ' + organisation.country.code}
+      PARAMS = {'apikey': api_key, 'q': organisation.address + ',' + organisation.city + ',' + organisation.zipcode + ',' + organisation.country.code}
       # sending get request and saving the response as response object
       r = requests.get(url=URL, params=PARAMS)
       data = r.json()
@@ -22,6 +22,7 @@ def index(request):
         "lat": float(latitude),
         "lng": float(longitude),
         "name": organisation.name,
+        "types": organisation.types,
         "address": organisation.address,
         "city": organisation.city,
         "zipcode": organisation.zipcode
@@ -32,6 +33,7 @@ def index(request):
       print('New request')
   else:
       latlng = request.session['data']
+      print('data request')
 
   context = {
     'latlng': json.dumps(latlng)
