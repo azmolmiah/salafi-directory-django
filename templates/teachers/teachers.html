@@ -79,7 +79,7 @@
           {% if teachers %}
           {% for teacher in teachers %}
             <div class="col-md-3">
-              <mark><em><strong>{{ teacher.name }}</strong></em></mark>
+              <em><strong>{{ teacher.name }}</strong></em>
               <p><i class="fas fa-th-large"></i> {{ teacher.type }}<br/><i class="fas fa-map-marker-alt"></i> {{ teacher.country.name }}<br/>
               {% if teacher.twitter %}<i class="fab fa-twitter"></i> <a href="{{teacher.twitter}}">Visit Page</a>{% endif %}</p>
               <hr>

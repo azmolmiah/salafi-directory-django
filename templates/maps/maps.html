@@ -54,9 +54,14 @@
 
       details.map(item => {
         addMarkerToGroup(group, {lat:item.lat, lng:item.lng},
-        `<div>${item.types}</div><hr/><div>${item.name}</div> <hr/> ${item.address}, <br> ${item.city}, <br> ${item.zipcode}`);
+        `
+          <strong>${item.name}</strong><hr/>${item.address},<br> 
+          ${item.city},<br> 
+          ${item.zipcode} <br>
+          <button class="btn btn-light mt-2"><a href="http://maps.google.com/?q=${item.address},${item.city},${item.zipcode}">Google Maps</a></button>
+        `);
       })
-    
+  
     }
     
     // In your own code, replace variable window.apikey with your own apikey
