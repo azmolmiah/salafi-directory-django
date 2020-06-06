@@ -2,6 +2,8 @@
 
 {% block title %} | السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ {% endblock %}
 
+{% load tz %}
+
 {% block content %}
     <!-- Showcase -->
   <section id="showcase">
@@ -96,17 +98,19 @@
                     {% endif %}
                   </div>
                   <hr>
-                    <h5 class="text-primary">{{ singleClass.title }}</h5>
+                    <strong>{{ singleClass.title }}</strong>
+                    <br>
                     <p>{{ singleClass.description }}</p>
+                    <div class="blockquote-footer">{{singleClass.sub_Heading}}</div>
                   <hr>
                   <div class="row">
+                    <div class="col-5 text-center p-0">
+                      <i class="far fa-clock"></i> {{singleClass.date_And_Time|timezone:time_zone|date:"g:i A"}}
+                    </div>
+                    <div class="col-3 text-center p-0 float-right">
+                      <i class="fas fa-calendar-alt"></i> {{singleClass.date_And_Time|timezone:time_zone|date:"D"}}
+                    </div>
                     <div class="col-4 text-center">
-                      <i class="far fa-clock"></i> {{singleClass.time}}
-                    </div>
-                    <div class="col-5 text-center">
-                      <i class="fas fa-calendar-alt"></i> {{singleClass.days}}'s
-                    </div>
-                    <div class="col-3 text-center">
                       <i class="fas fa-pound-sign"></i> 
                       {% if singleClass.price == 0 %}
                         Free
@@ -129,6 +133,8 @@
             </div>
           {% endfor %}
       </div> <!-- Class listing end -->
+      {% else %}
+        <h5 class="text-center my-3">Sorry, there are no classes in {{country_name}}.</h5>
       {% endif %}
 
       {% if lectures %}
@@ -199,6 +205,8 @@
             </div>
           {% endfor %}
       </div>
+      {% else %}
+        <h5 class="text-center my-3">Sorry, there are no Lectures in {{country_name}}.</h5>
       {% endif %}
     </div>
   </section>

@@ -2,13 +2,15 @@
 
 {% block title %} | Classes {% endblock %}
 
+{% load tz %}
+
 {% block content %}
 <section id="showcase-inner" class="pt-3 pb-5 text-white">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
           <h1 class="display-4 ">Browse Salafi Classes</h1>
-          <p class="mb-4">Browse through classes that are on a regular schedule.</p>
+          <p class="mb-4">Browse through weekly classes.</p>
           <!-- form -->
           <form action="{% url 'classes' %}">
             <!-- Form Row 1 -->
@@ -129,17 +131,18 @@
                     {% endif %}
                   </div>
                   <hr>
-                  <h5 class="text-primary">{{ singleClass.title }}</h5>
+                  <strong>{{ singleClass.title }}</strong>
                   <p>{{ singleClass.description }}</p>
+                  <div class="blockquote-footer">{{singleClass.sub_Heading}}</div>
                   <hr>
                   <div class="row">
+                    <div class="col-5 text-center p-0">
+                      <i class="far fa-clock"></i> {{singleClass.date_And_Time|timezone:time_zone|date:"g:i A"}}
+                    </div>
+                    <div class="col-3 text-center p-0">
+                      <i class="fas fa-calendar-alt"></i> {{singleClass.date_And_Time|timezone:time_zone|date:"D"}}
+                    </div>
                     <div class="col-4 text-center">
-                      <i class="far fa-clock"></i> {{singleClass.time}}
-                    </div>
-                    <div class="col-5 text-center">
-                      <i class="fas fa-calendar-alt"></i> {{singleClass.days}}'s
-                    </div>
-                    <div class="col-3 text-center">
                       <i class="fas fa-pound-sign"></i> 
                       {% if singleClass.price == 0 %}
                         Free
