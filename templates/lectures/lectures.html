@@ -8,7 +8,7 @@
       <div class="row text-center">
         <div class="col-md-12">
           <h1 class="display-4 ">Browse Salafi Lectures</h1>
-          <p class="mb-4">Browse through current and future Lectures. For past lectures, please visit centre links.</p>
+          <p class="mb-4">Browse through current and future Lectures.</p>
           <!-- form -->
           <form action="{% url 'lectures' %}">
             <!-- Form Row 1 -->
@@ -24,17 +24,8 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                  <label class="sr-only">Country</label>
-                  <select name="country" class="form-control">
-                    <option selected="true" disabled="disabled">Country (All)</option>
-                    {% for country in countries %}
-                      <option value="{{country.code}}"
-                        {% if country.code == values.country %}
-                          selected
-                        {% endif %}
-                      >{{country.name}}</option>
-                    {% endfor %}
-                  </select>
+                  <label for="date-input" class="sr-only">Date</label>
+                  <input type="date" name="date" class="form-control" id="date-input" value="{{ values.date }}">
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -58,7 +49,8 @@
               </div>
               <!-- Form Row 2 -->
               <div class="form-row">
-                <div class="col-md-5 mb-3">
+
+                <div class="col-md-4 mb-3">
                   <label class="sr-only">Organisations</label>
                   <select name="organisation" class="form-control">
                     <option selected="true" disabled="disabled">Centres (All)</option>
@@ -71,17 +63,30 @@
                       {% endfor %}
                   </select>
                 </div>
-                <div class="col-md-5 mb-3">
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Country</label>
+                  <select name="country" class="form-control">
+                    <option selected="true" disabled="disabled">Country (All)</option>
+                    {% for country in countries %}
+                      <option value="{{country.code}}"
+                        {% if country.code == values.country %}
+                          selected
+                        {% endif %}
+                      >{{country.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
                   <div class="input-group input-daterange">
                     <input type="date" name="start_date" class="form-control" value="{{ values.start_date }}">
                     <div class="input-group-append"><span class="input-group-text">to</span></div>
                     <input type="date" name="end_date" class="form-control" value="{{ values.end_date }}">
                   </div>
                 </div>
-                <div class="col-md-2 mb-3">
-                  <label for="date-input" class="sr-only">Date</label>
-                  <input type="date" name="date" class="form-control" id="date-input" value="{{ values.date }}">
-                </div>
+                
+
               </div>
             <button class="btn btn-secondary btn-block mt-3" type="submit">Search Lectures</button>
           </form>

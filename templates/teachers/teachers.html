@@ -8,7 +8,7 @@
       <div class="row text-center">
         <div class="col-md-12">
           <h1 class="display-4 ">Browse Salafi Teachers</h1>
-          <p class="mb-4">Browse through students of knowledge, current and past scholars.</p>
+          <p class="mb-4">Browse through current and past students of knowledge or scholars.</p>
           <!-- form -->
           <form action="{% url 'teachers' %}">
             <!-- Form Row 1 -->
@@ -79,15 +79,15 @@
           {% if teachers %}
           {% for teacher in teachers %}
             <div class="col-md-3">
-              <em><strong>{{ teacher.name }}</strong></em>
-              <p><i class="fas fa-th-large"></i> {{ teacher.type }}<br/><i class="fas fa-map-marker-alt"></i> {{ teacher.country.name }}<br/>
-              {% if teacher.twitter %}<i class="fab fa-twitter"></i> <a href="{{teacher.twitter}}">Visit Page</a>{% endif %}</p>
+              <em><strong>{{ teacher.name }}</strong></em><br>
+              <i class="fas fa-th-large"></i> {{ teacher.type }}<br/><i class="fas fa-map-marker-alt"></i> {{ teacher.country.name }}<br/>
+              {% if teacher.twitter %}<i class="fab fa-twitter"></i> <a href="{{teacher.twitter}}">Visit Page</a>{% endif %}
               <hr>
             </div>        
           {% endfor %}
         {% else %}
           <div class="container text-center">
-            <p>Sorry, no lecture listings available</p>
+            <p>Sorry, no teacher listings available</p>
           </div>
         {% endif %}
       </div>
