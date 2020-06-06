@@ -2,7 +2,7 @@ from django.db import models
 from django_countries.fields import CountryField
 class Teacher(models.Model):
     teachers = models.ManyToManyField('self', blank=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     country = CountryField()
     twitter = models.URLField(blank=True)
     type = models.CharField(max_length=20, choices=[(
