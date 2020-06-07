@@ -14,9 +14,8 @@ class Lecture(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=132)
-    date = models.DateField(default=datetime.today)
-    time = models.TimeField(default=timezone.now)
-    expiration_date = models.DateField(default=one_day)
+    date_And_Time = models.DateTimeField(default=datetime.today)
+    expiration_Date_And_Time = models.DateTimeField(default=one_day)
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     language = models.CharField(max_length=200, default='English')
     is_online = models.BooleanField(default=False)
@@ -26,7 +25,7 @@ class Lecture(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def clean(self):
-      if self.date > self.expiration_date:
+      if self.date_And_Time.date > self.expiration_Date_And_Time.date:
         raise ValidationError("Date cannot be ahead of expiration date")
 
     def __str__(self):

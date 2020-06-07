@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 
@@ -20,6 +21,9 @@ class Class(models.Model):
     photo = models.ImageField(upload_to='classes/', default='classes/')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def is_live(self):
+        return  self.date_And_Time.day == datetime.now().day and self.date_And_Time.hour == datetime.now().hour
 
     def __str__(self):
         return self.title

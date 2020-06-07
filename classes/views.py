@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.gis.geoip2 import GeoIP2
+from datetime import datetime
 from django_countries import countries
 
 from .models import Class
@@ -43,7 +44,6 @@ def index(request):
         organisation = request.GET['organisation']
         if organisation:
             queryset_list = queryset_list.filter(organisation__name=organisation)
-
     paginator = Paginator(queryset_list, 6)
     page = request.GET.get('page')
     paged_classes = paginator.get_page(page)

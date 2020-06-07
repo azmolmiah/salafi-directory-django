@@ -120,10 +120,10 @@
                   </div>
                   <hr>                 
                   <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">
-                    {% if singleClass.is_online %}
-                      Online Class
+                    {% if singleClass.is_live %}
+                      Live
                     {% else %}
-                      Live Recording
+                      Recording
                     {% endif %}
                   </a>
       
@@ -205,7 +205,7 @@
           {% endfor %}
       </div>
       {% else %}
-        <h5 class="text-center my-3">Sorry, there are no Lectures in {{country_name}}.</h5>
+        <h5 class="text-center my-3">Sorry, there are no lectures in {{country_name}}.</h5>
       {% endif %}
     </div>
   </section>
