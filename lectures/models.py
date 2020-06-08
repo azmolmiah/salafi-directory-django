@@ -6,11 +6,16 @@ from organisations.models import Organisation
 from teachers.models import Teacher
 from django.contrib.auth import get_user_model
 
+
 def one_day():
-  return datetime.today() + timedelta(days=1)
+    return datetime.today() + timedelta(days=1)
+
+
 class Lecture(models.Model):
-    account = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)
-    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, null=True)
+    account = models.ForeignKey(
+        get_user_model(), null=True, on_delete=models.CASCADE)
+    organisation = models.ForeignKey(
+        Organisation, on_delete=models.CASCADE, null=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=132)
@@ -24,9 +29,15 @@ class Lecture(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def is_live(self):
+      return datetime.now().timestamp() >= self.date_And_Time.timestamp() and datetime.now().timestamp() <= self.expiration_Date_And_Time.timestamp()
+
     def clean(self):
-      if self.date_And_Time.date > self.expiration_Date_And_Time.date:
+      if self.date_And_Time.date() > self.expiration_Date_And_Time.date():
         raise ValidationError("Date cannot be ahead of expiration date")
+      
+      if self.date_And_Time.date() == self.expiration_Date_And_Time.date() and self.date_And_Time.time() > self.expiration_Date_And_Time.time():
+          raise ValidationError("Time cannot be ahead of expiration time")
 
     def __str__(self):
         return self.title
