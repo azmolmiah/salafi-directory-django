@@ -2,6 +2,8 @@
 
 {% block title %} | Lectures {% endblock %}
 
+{% load tz %}
+
 {% block content %}
 <section id="showcase-inner" class="pt-3 pb-5 text-white">
     <div class="container">
@@ -135,7 +137,7 @@
                 
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{ lecture.title }}</h4>
+                    <h4 class="text-primary">{{ lecture.organisation.name }}</h4>
                     {% if lecture.is_online %}
                       Please, use the link below.
                     {% else %}
@@ -143,15 +145,18 @@
                       <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{lecture.organisation.address}}, {{lecture.organisation.zipcode}}">{{lecture.organisation.address}}, {{lecture.organisation.zipcode}}</a></p>
                     {% endif %}
                   </div>
+                  <strong>{{ lecture.title }}</strong>
+                  <br>
+                  <div>{{ lecture.description }}</div>
                   <hr>
-                  <div class="row py-4" >
-                    <div class="col-4 text-center">
-                      <i class="far fa-clock"></i> {{lecture.time}}
+                  <div class="row" >
+                    <div class="col-5 text-center p-0">
+                      <i class="far fa-clock"></i> {{lecture.date_And_Time|timezone:time_zone|date:"g:i A"}}
                     </div>
-                    <div class="col-4 text-center">
-                      <i class="fas fa-calendar-alt"></i> {{lecture.date}}
+                    <div class="col-4 text-center p-0">
+                      <i class="fas fa-calendar-alt"></i> {{lecture.date_And_Time|timezone:time_zone|date:"d M Y"}}
                     </div>
-                    <div class="col-4 text-center">
+                    <div class="col-3 text-center">
                       <i class="fas fa-pound-sign"></i> 
                       {% if lecture.price == 0 %}
                         Free
@@ -160,12 +165,7 @@
                       {% endif %}
                     </div>
                   </div>
-                  <hr>
-                  <div class="mb-2">{{lecture.description}}</div>
-                  <div class="text-center mb-2">
-                    {{lecture.organisation.name}}
-                  </div>
-                  
+                  <hr>                  
                   <a href="{{ lecture.link }}" class="btn btn-primary btn-block">
                     {% if lecture.is_live %}
                       Live

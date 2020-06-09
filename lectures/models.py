@@ -16,7 +16,7 @@ class Lecture(models.Model):
         get_user_model(), null=True, on_delete=models.CASCADE)
     organisation = models.ForeignKey(
         Organisation, on_delete=models.CASCADE, null=True)
-    teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING)
+    teacher = models.ManyToManyField(Teacher)
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=132)
     date_And_Time = models.DateTimeField(default=datetime.today)
@@ -30,14 +30,14 @@ class Lecture(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def is_live(self):
-      return datetime.now().timestamp() >= self.date_And_Time.timestamp() and datetime.now().timestamp() <= self.expiration_Date_And_Time.timestamp()
+        return datetime.now().timestamp() >= self.date_And_Time.timestamp() and datetime.now().timestamp() <= self.expiration_Date_And_Time.timestamp()
 
     def clean(self):
-      if self.date_And_Time.date() > self.expiration_Date_And_Time.date():
-        raise ValidationError("Date cannot be ahead of expiration date")
-      
-      if self.date_And_Time.date() == self.expiration_Date_And_Time.date() and self.date_And_Time.time() > self.expiration_Date_And_Time.time():
-          raise ValidationError("Time cannot be ahead of expiration time")
+        if self.date_And_Time.date() > self.expiration_Date_And_Time.date():
+            raise ValidationError("Date cannot be ahead of expiration date")
+
+        if self.date_And_Time.date() == self.expiration_Date_And_Time.date() and self.date_And_Time.time() > self.expiration_Date_And_Time.time():
+            raise ValidationError("Time cannot be ahead of expiration time")
 
     def __str__(self):
         return self.title
