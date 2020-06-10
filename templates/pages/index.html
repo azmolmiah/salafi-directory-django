@@ -141,68 +141,66 @@
       <div class="row">
         <!-- Listing -->
         
-          {% for lecture in lectures %}
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="card listing-preview">
-                <img class="card-img-top" src="{{ lecture.photo.url }}" alt="">
-                
-                  <div class="card-img-overlay">
-                    <h2>
-                      <span class="badge badge-secondary text-white">
-                        {% if lecture.is_online %}
-                          Online
-                        {% else %}
-                          Classroom
-                        {% endif %}
-                      </span>
-                    </h2>
-                  </div>
-                
-                <div class="card-body">
-                  <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{ lecture.title }}</h4>
+        {% for lecture in lectures %}
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card listing-preview">
+            <img class="card-img-top" src="{{ lecture.photo.url }}" alt="">
+            
+              <div class="card-img-overlay">
+                <h2>
+                  <span class="badge badge-secondary text-white">
                     {% if lecture.is_online %}
-                      Please, use the link below.
+                      Online
                     {% else %}
-                      <p class="text-secondary">
-                      <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{lecture.organisation.address}}, {{lecture.organisation.zipcode}}">{{lecture.organisation.address}}, {{lecture.organisation.zipcode}}</a></p>
+                      Classroom
                     {% endif %}
-                  </div>
-                  <hr>
-                  <div class="row py-4" >
-                    <div class="col-4 text-center">
-                      <i class="far fa-clock"></i> {{lecture.time}}
-                    </div>
-                    <div class="col-4 text-center">
-                      <i class="fas fa-calendar-alt"></i> {{lecture.date}}
-                    </div>
-                    <div class="col-4 text-center">
-                      <i class="fas fa-pound-sign"></i> 
-                      {% if lecture.price == 0 %}
-                        Free
-                      {% else %}
-                        {{lecture.price}}
-                      {% endif %}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="mb-2">{{lecture.description}}</div>
-                  <div class="text-center mb-2">
-                    {{lecture.organisation.name}}
-                  </div>
-                  
-                  <a href="{{ lecture.link }}" class="btn btn-primary btn-block">
-                    {% if lecture.is_online %}
-                      Online Class
-                    {% else %}
-                      Live Recording
-                    {% endif %}
-                  </a>
-      
+                  </span>
+                </h2>
+              </div>
+            
+            <div class="card-body">
+              <div class="listing-heading text-center">
+                <h4 class="text-primary">{{ lecture.organisation.name }}</h4>
+                {% if lecture.is_online %}
+                  Please, use the link below.
+                {% else %}
+                  <p class="text-secondary">
+                  <i class="fas fa-map-marker fa-lg"></i> <a href="https://maps.google.com/maps?q={{lecture.organisation.address}}, {{lecture.organisation.zipcode}}">{{lecture.organisation.address}}, {{lecture.organisation.zipcode}}</a></p>
+                {% endif %}
+              </div>
+              <strong>{{ lecture.title }}</strong>
+              <br>
+              <div>{{ lecture.description }}<div class="blockquote-footer">By {{lecture.teacher.all|join:", "}}</div></div>
+              <hr>
+              <div class="row" >
+                <div class="col-5 text-center p-0">
+                  <i class="far fa-clock"></i> {{lecture.date_And_Time|timezone:time_zone|date:"g:i A"}}
+                </div>
+                <div class="col-4 text-center p-0">
+                  <i class="fas fa-calendar-alt"></i> {{lecture.date_And_Time|timezone:time_zone|date:"d M Y"}}
+                </div>
+                <div class="col-3 text-center">
+                  <i class="fas fa-pound-sign"></i> 
+                  {% if lecture.price == 0 %}
+                    Free
+                  {% else %}
+                    {{lecture.price}}
+                  {% endif %}
                 </div>
               </div>
+              <hr>                  
+              <a href="{{ lecture.link }}" class="btn btn-primary btn-block">
+                {% if lecture.is_live %}
+                  Live
+                {% else %}
+                  Recording
+                {% endif %}
+              </a>
+  
             </div>
-          {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
       </div>
       {% else %}
         <h5 class="text-center my-3">Sorry, there are no lectures in {{country_name}}.</h5>

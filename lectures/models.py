@@ -17,7 +17,7 @@ class Lecture(models.Model):
     organisation = models.ForeignKey(
         Organisation, on_delete=models.CASCADE, null=True)
     teacher = models.ManyToManyField(Teacher)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=28)
     description = models.TextField(max_length=132)
     date_And_Time = models.DateTimeField(default=datetime.today)
     expiration_Date_And_Time = models.DateTimeField(default=one_day)

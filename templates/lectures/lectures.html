@@ -147,7 +147,8 @@
                   </div>
                   <strong>{{ lecture.title }}</strong>
                   <br>
-                  <div>{{ lecture.description }}</div>
+                  <div>{{ lecture.description }}<div class="blockquote-footer">By {{lecture.teacher.all|join:", "}}</div></div>
+
                   <hr>
                   <div class="row" >
                     <div class="col-5 text-center p-0">
