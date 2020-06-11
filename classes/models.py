@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 
 from organisations.models import Organisation
@@ -24,6 +25,10 @@ class Class(models.Model):
 
     def is_live(self):
         return  self.date_And_Time.day == datetime.now().day and self.date_And_Time.hour == datetime.now().hour
+    
+    def clean(self):
+        if(Class.objects.count() > 10 and self.pk is None):
+            raise ValidationError("You are only allowed 10 classes. Please, edit or remove a class.")
 
     def __str__(self):
         return self.title
