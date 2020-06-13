@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lectures', '0012_auto_20200610_0708'),
+        ('classes', '0026_auto_20200610_0708'),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='lecture',
+        migrations.AlterField(
+            model_name='class',
             name='sub_Heading',
             field=models.CharField(blank=True, max_length=30),
         ),
         migrations.AlterField(
-            model_name='lecture',
+            model_name='class',
             name='title',
             field=models.CharField(max_length=25),
         ),
