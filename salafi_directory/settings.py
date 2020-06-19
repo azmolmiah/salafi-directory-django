@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import environ
+env = environ.Env(
+# set casting, default value
+HERE_MAPS_API_KEY=(str)
+)
+# reading .env file
+environ.Env.read_env('.env')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -109,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -143,4 +149,4 @@ MESSAGE_TAGS = {
 }
 
 # Keys
-HERE_MAPS_API_KEY = os.environ.get('HERE_MAPS_API_KEY') 
+HERE_MAPS_API_KEY = env('HERE_MAPS_API_KEY')
