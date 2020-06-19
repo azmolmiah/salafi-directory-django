@@ -141,3 +141,6 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
+# Keys
+HERE_MAPS_API_KEY = os.environ.get('HERE_MAPS_API_KEY') 

@@ -85,7 +85,7 @@
                     </h2>
                   </div>
                 
-                <div class="card-body">
+                <div class="card-body mt-0 pt-0">
                   <div class="listing-heading text-center">
                     <h5 class="mb-1">
                       {{singleClass.organisation.name}}
@@ -108,7 +108,7 @@
                       <i class="far fa-clock"></i> {{singleClass.date_And_Time|timezone:time_zone|date:"g:i A"}}
                     </div>
                     <div class="col-3 text-center p-0 float-right">
-                      <i class="fas fa-calendar-alt"></i> {{singleClass.date_And_Time|timezone:time_zone|date:"D"}}
+                      <i class="fas fa-calendar-alt"></i> {{singleClass.date_And_Time|timezone:time_zone|date:"l"}}'s
                     </div>
                     <div class="col-4 text-center">
                       <i class="fas fa-money-bill-alt"></i> 
@@ -159,7 +159,7 @@
                 </h2>
               </div>
             
-            <div class="card-body">
+            <div class="card-body mt-0 pt-0">
               <div class="listing-heading text-center">
                 <h4 class="text-primary">{{ lecture.organisation.name }}</h4>
                 {% if lecture.is_online %}

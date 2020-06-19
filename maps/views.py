@@ -2,6 +2,7 @@ import requests
 import json
 from django.shortcuts import render
 from organisations.models import Organisation
+from django.conf import settings
 
 def index(request):
   organisations = Organisation.objects.all()
@@ -11,7 +12,7 @@ def index(request):
     for organisation in organisations:
       URL = "https://geocode.search.hereapi.com/v1/geocode"
       # Acquire from developer.here.com
-      api_key = 'LNGJKlqzncGWlpgjAy0svm4OGEl0FdN2Cpk_XJrQOQs'
+      api_key = settings.HERE_MAPS_API_KEY
       PARAMS = {'apikey': api_key, 'q': organisation.address + ',' + organisation.city + ',' + organisation.zipcode + ',' + organisation.country.code}
       # sending get request and saving the response as response object
       r = requests.get(url=URL, params=PARAMS)
@@ -30,10 +31,8 @@ def index(request):
       latlng.append(dict(details))
       request.session['data'] = latlng
       request.session.set_expiry(60 * 60 * 24 * 5)
-      print('New request')
   else:
       latlng = request.session['data']
-      print('data request')
 
   context = {
     'latlng': json.dumps(latlng)
