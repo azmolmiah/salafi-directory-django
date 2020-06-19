@@ -71,7 +71,7 @@
           {% for singleClass in classes %}
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img style="margin: auto;" class="card-img-top mt-4" src="{{ singleClass.photo.url }}" alt="">
+                <img style="height: 200px" class="card-img-top px-4 py-4"  src="{{ singleClass.photo.url }}" alt="">
                 
                   <div class="card-img-overlay">
                     <h2>
@@ -98,7 +98,8 @@
                     {% endif %}
                   </div>
                   <hr>
-                    <strong>{{ singleClass.title }}</strong>
+                    <strong>{{ singleClass.title }}</strong><br>
+                    <small><em>{{singleClass.sub_Heading}}</em></small>
                     <br>
                     <div>{{ singleClass.description }}<div class="blockquote-footer">By {{singleClass.teacher}}</div></div>
                   <hr>
@@ -110,7 +111,7 @@
                       <i class="fas fa-calendar-alt"></i> {{singleClass.date_And_Time|timezone:time_zone|date:"D"}}
                     </div>
                     <div class="col-4 text-center">
-                      <i class="fas fa-pound-sign"></i> 
+                      <i class="fas fa-money-bill-alt"></i> 
                       {% if singleClass.price == 0 %}
                         Free
                       {% else %}
@@ -144,7 +145,7 @@
         {% for lecture in lectures %}
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img class="card-img-top mt-4" src="{{ lecture.photo.url }}" alt="">
+            <img style="height: 200px" class="card-img-top px-4 py-4"  src="{{ lecture.photo.url }}" alt="">
             
               <div class="card-img-overlay">
                 <h2>
@@ -170,7 +171,21 @@
               </div>
               <strong>{{ lecture.title }}</strong>
               <br>
-              <div>{{ lecture.description }}<div class="blockquote-footer">By {{lecture.teacher.all|join:", "}}</div></div>
+              <div>{{ lecture.description }}<a href="#" data-toggle="modal" data-target=".teacher-modal" class="blockquote-footer">View Teachers </a></div>
+
+                  <div class="modal fade teacher-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content pt-3">
+                        {%for teacher in lecture.teacher.all %}
+                        <ul>
+                          <li>{{teacher}}</li>
+                        </ul>
+                          
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+
               <hr>
               <div class="row" >
                 <div class="col-5 text-center p-0">
@@ -180,7 +195,7 @@
                   <i class="fas fa-calendar-alt"></i> {{lecture.date_And_Time|timezone:time_zone|date:"d M Y"}}
                 </div>
                 <div class="col-3 text-center">
-                  <i class="fas fa-pound-sign"></i> 
+                  <i class="fas fa-money-bill-alt"></i> 
                   {% if lecture.price == 0 %}
                     Free
                   {% else %}
