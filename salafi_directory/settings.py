@@ -150,3 +150,8 @@ MESSAGE_TAGS = {
 
 # Keys
 HERE_MAPS_API_KEY = env('HERE_MAPS_API_KEY')
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
