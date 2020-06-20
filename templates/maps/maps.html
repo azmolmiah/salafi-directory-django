@@ -11,7 +11,6 @@
         <li class="float-left list-group-item px-auto"><i class="fas fa-store"></i> = Store</li>
         <li class="float-left list-group-item px-auto"><i class="fas fa-school"></i> = School</li>
         <li class="float-left list-group-item px-auto"><i class="fas fa-plane"></i> = Pilgrimage</li>
-        <li class="float-left list-group-item px-auto"><i class="fas fa-donate"></i> = Charity</li>
       </ul>
     </div>
   </div>
@@ -35,8 +34,6 @@
           myMarker = '<i class="fas fa-school"></i>';
         } else if (item.types == 'Pilgrimage'){
           myMarker = '<i class="fas fa-plane"></i>';
-        } else if (item.types == 'Charity'){
-          myMarker = '<i class="fas fa-donate"></i>';
         }
       })
       let icon = new H.map.DomIcon(myMarker);

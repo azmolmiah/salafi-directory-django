@@ -25,7 +25,7 @@ class Organisation(models.Model):
     mixlr = models.URLField(blank=True)
     soundcloud = models.URLField(blank=True)
     types = models.CharField(max_length=20, choices=[('Centre', 'Centre'), ('School', 'School'), (
-        'Store', 'Store'), ('Pilgrimage', 'Pilgrimage'), ('Charity', 'Charity')])
+        'Store', 'Store'), ('Pilgrimage', 'Pilgrimage')])
     logo = models.ImageField(
         upload_to='logos/', help_text='Must be a height, width of 200px and image size under 20 Kilobytes.')
     photo_main = models.ImageField(

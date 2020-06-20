@@ -148,15 +148,26 @@
                     >{{organisation.lecture_set.count}}</span
                   >
                 </li>
-                {% endif %} {% if organisation.phone %}
+                {% endif %} 
+                {% if organisation.phone %}
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-phone"></i> Phone:
                   <span class="float-right"
-                    ><a href="{{organisation.phone}}"
+                    ><a href="tel:{{organisation.phone}}"
                       >{{organisation.phone}}</a
                     ></span
                   >
                 </li>
+                {% if organisation.email %}
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-envelope"></i> Email:
+                  <span class="float-right"
+                    ><a href="mailto:{{organisation.email}}"
+                      >{{organisation.email}}</a
+                    ></span
+                  >
+                </li>
+                {% endif %}
                 {% endif %} {% if organisation.website %}
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-globe"></i> Website:
@@ -226,7 +237,7 @@
         
         <div class="col-md-3">
           <div class="d-block">
-            <!-- Google ads -->
+              
           </div>
         </div>
         
