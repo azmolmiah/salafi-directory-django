@@ -1,0 +1,14 @@
+{% extends 'base.html' %} 
+
+{% block title %} |  جزاك اللهُ خيراً‎ {% endblock %} 
+
+{% block content %}
+  <div class="container text-center py-5">
+    <div class="col-6 mx-auto">
+      <h4>Thank you for your contribution!</h4>
+      <p>Your support helps fulfill maintaining and improving this website.</p>
+      <hr>
+      <a class="btn btn-secondary" href="{% url 'index' %}">&#x2190;Back to the home page</a>
+    </div>
+  </div>
+{% endblock %}

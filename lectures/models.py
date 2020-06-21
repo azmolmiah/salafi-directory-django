@@ -8,24 +8,18 @@ from django.core.files.images import get_image_dimensions
 from organisations.models import Organisation
 from teachers.models import Teacher
 
-
 def one_day():
     return datetime.today() + timedelta(days=1)
 
-
 class Lecture(models.Model):
-    account = models.ForeignKey(
-        get_user_model(), null=True, on_delete=models.CASCADE)
-    organisation = models.ForeignKey(
-        Organisation, on_delete=models.CASCADE, null=True)
+    account = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)
+    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE, null=True)
     teacher = models.ManyToManyField(Teacher)
     title = models.CharField(max_length=28, help_text='Max 30 characters')
-    description = models.TextField(
-        max_length=132, help_text='Must be equal 132 characters.', validators=[MinLengthValidator(132)])
+    description = models.TextField(max_length=132, help_text='Must be equal 132 characters.', validators=[MinLengthValidator(132)])
     date_And_Time = models.DateTimeField(default=datetime.today)
     expiration_Date_And_Time = models.DateTimeField(default=one_day)
-    price = models.DecimalField(
-        max_digits=6, decimal_places=2, default=0, help_text='Eg: 0 = free / 1.22 = 1.22')
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0, help_text='Eg: 0 = free / 1.22 = 1.22')
     language = models.CharField(max_length=20, default='English')
     is_online = models.BooleanField(default=False)
     link = models.URLField(blank=True, help_text='Link to online class.')

@@ -35,7 +35,8 @@ def index(request):
       latlng = request.session['data']
 
   context = {
-    'latlng': json.dumps(latlng)
+    'latlng': json.dumps(latlng),
+    'apiKey': settings.HERE_MAPS_API_KEY
   }
 
   return render(request, 'maps/maps.html', context)
