@@ -1,16 +1,16 @@
 {% extends 'base.html' %} 
 
-{% block title %} | Support us {% endblock %} 
+{% block title %} | Donate {% endblock %} 
 
 {% block content %}
   <div class="container py-5">
     <div class="text-center">
       <h1>Support Salafi Directory</h1>
-      <p class="lead">All your support goes back to improving and maintaining this website.</p>
+      <p class="lead">All your support goes back to improvements and maintenance.</p>
     </div>
     
     <div class="row">
-      <div class="col-6">
+      <div class="col-6 mx-auto">
         <form action="{% url 'charge' %}" method="post" id="payment-form">
           {% csrf_token %}
     

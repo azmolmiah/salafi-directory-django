@@ -12,7 +12,6 @@ def index(request):
 
 def charge(request):
   if request.method == 'POST':
-    print('Data:', request.POST)
     amount = int(request.POST['amount'])
 
     customer = stripe.Customer.create(
@@ -26,6 +25,7 @@ def charge(request):
       currency='gbp',
       description='Donation'
     )
+    
   return redirect('success')
 
 def success(request):
