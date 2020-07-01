@@ -13,6 +13,7 @@
           <p class="mb-4">Browse through current and future Lectures.</p>
           <!-- form -->
           <form action="{% url 'lectures' %}">
+            {% csrf_token %}
             <!-- Form Row 1 -->
             <div class="form-row">
                 <div class="col-md-3 mb-3">

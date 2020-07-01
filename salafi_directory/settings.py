@@ -153,6 +153,16 @@ MESSAGE_TAGS = {
 HERE_MAPS_API_KEY = env('HERE_MAPS_API_KEY')
 STRIPE_API_KEY=env('STRIPE_API_KEY')
 
+# Cached Sessions
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
 try:
     from .local_settings import *
 except ImportError:

@@ -10,6 +10,7 @@
           <h1 class="display-4">Browse Salafi Organisations</h1>
           <p class="mb-4">Browse from different parts of the world. Listings include centres, schools, stores, charity and pilgrimage organisations.</p>
           <form action="{% url 'organisations' %}">
+            {% csrf_token %}
             <!-- Form Row 1 -->
             <div class="form-row">
                 <div class="col-md-6 mb-3">
