@@ -45,9 +45,9 @@ class Organisation(models.Model):
 
     def clean(self):
         if self.logo:
-            if(self.logo.file.size > 25000):
+            if(self.logo.file.size > 40000):
                 raise ValidationError(
-                    f'The image is {self.logo.file.size / 1000} Kilobytes. Must be 25 Kilobytes or less.')
+                    f'The logo image is {self.logo.file.size / 1000} Kilobytes. Must be 25 Kilobytes or less.')
 
             w, h = get_image_dimensions(self.logo)
             if w != 200:
@@ -61,7 +61,7 @@ class Organisation(models.Model):
             w, h = get_image_dimensions(self.photo_main)
             if h != 300:
                 raise ValidationError(
-                    "The main profile image is %i pixel height. Must be 300px." % h)
+                    "The main image is %i pixel height. Must be 300px." % h)
 
     def __str__(self):
         return self.name

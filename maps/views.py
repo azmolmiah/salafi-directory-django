@@ -3,12 +3,22 @@ import json
 from django.shortcuts import render
 from organisations.models import Organisation
 from django.conf import settings
+from django.core.cache import cache
 
 def index(request):
-  organisations = Organisation.objects.all()
+  organisations = None
+
+  cached_organisations = cache.get('organisations')
+
+  if cached_organisations:
+    organisations = cache.get('organisations')
+  else:
+    cache.set('organisations', Organisation.objects.all(), 60 * 24 * 7)
+    organisations = cache.get('organisations')
+
   latlng = []
 
-  if 'data' not in request.session:
+  if organisations == None:
     for organisation in organisations:
       URL = "https://geocode.search.hereapi.com/v1/geocode"
       # Acquire from developer.here.com
@@ -29,10 +39,9 @@ def index(request):
         "zipcode": organisation.zipcode
       }
       latlng.append(dict(details))
-      request.session['data'] = latlng
-      request.session.set_expiry(60 * 60 * 24 * 5)
+      cache.set('data', latlng, 60 * 24 * 7)
   else:
-      latlng = request.session['data']
+      latlng = cache.get('data')
 
   context = {
     'latlng': json.dumps(latlng),
