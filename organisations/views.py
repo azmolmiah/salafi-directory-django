@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django_countries import countries
-from .models import Organisation
 from django.core.cache import cache
+
+from .models import Organisation
 
 
 def index(request):
@@ -13,7 +14,6 @@ def index(request):
     else:
         queryset_list = Organisation.objects.order_by('-created')
         cache.set('cached_organisations_queryset_list', queryset_list, 60 * 60 * 24 * 7)
-        queryset_list = cache.get('cached_organisations_queryset_list')
     
     # Keywords
     if 'keywords' in request.GET:
@@ -58,13 +58,8 @@ def organisation(request, organisation_id):
     if cache.get('get_object_or_404_organisation'):
         organisation = cache.get('get_object_or_404_organisation')
     else:
-        cache.set('get_object_or_404_organisation', get_object_or_404(Organisation, pk=organisation_id), 60 * 60 * 24 * 7)
-        organisation = cache.get('get_object_or_404_organisation')
-        print('Not using cache')
-
-    if cache.get('get_object_or_404_organisation'):
-        organisation = cache.get('get_object_or_404_organisation')
-        print('Now using cache')
+        organisation = get_object_or_404(Organisation, pk=organisation_id)
+        cache.set('get_object_or_404_organisation', organisation, 60 * 60 * 24 * 7)
 
     context = {
         'organisation': organisation

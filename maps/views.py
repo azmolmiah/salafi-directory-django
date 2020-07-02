@@ -13,8 +13,8 @@ def index(request):
   if cached_organisations:
     organisations = cache.get('organisations')
   else:
-    cache.set('organisations', Organisation.objects.all(), 60 * 60 * 24 * 7)
-    organisations = cache.get('organisations')
+    organisations = Organisation.objects.all()
+    cache.set('organisations', organisations, 60 * 60 * 24 * 7)
 
   latlng = []
 
