@@ -6,11 +6,14 @@ from django.core.cache import cache
 
 
 def index(request):
-    queryset_list = Organisation.objects.order_by('-created')
+    queryset_list = None
 
-    if queryset_list:
-        cache.set('cached_queryset_list', queryset_list, 60 * 60 * 24 * 7)
-        queryset_list = cache.get('cached_queryset_list')
+    if cache.get('cached_organisations_queryset_list'):
+        queryset_list = cache.get('cached_organisations_queryset_list')
+    else:
+        queryset_list = Organisation.objects.order_by('-created')
+        cache.set('cached_organisations_queryset_list', queryset_list, 60 * 60 * 24 * 7)
+        queryset_list = cache.get('cached_organisations_queryset_list')
     
     # Keywords
     if 'keywords' in request.GET:
