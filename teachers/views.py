@@ -1,11 +1,18 @@
 from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django_countries import countries
+from django.core.cache import cache
 
 from .models import Teacher
 
 def index(request):
-  queryset_list = Teacher.objects.order_by('-created')
+  queryset_list = None
+
+  if cache.get('cached_teachers_queryset_list'):
+    queryset_list = cache.get('cached_teachers_queryset_list')
+  else:
+    queryset_list = Teacher.objects.order_by('-created')
+    cache.set('cached_teachers_queryset_list', queryset_list, 60 * 60 * 24 * 7)
 
   # Keywords
   if 'keywords' in request.GET:
