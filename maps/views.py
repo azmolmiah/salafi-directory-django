@@ -13,12 +13,12 @@ def index(request):
   if cached_organisations:
     organisations = cache.get('organisations')
   else:
-    cache.set('organisations', Organisation.objects.all(), 60 * 24 * 7)
+    cache.set('organisations', Organisation.objects.all(), 60 * 60 * 24 * 7)
     organisations = cache.get('organisations')
 
   latlng = []
 
-  if organisations == None:
+  if not latlng:
     for organisation in organisations:
       URL = "https://geocode.search.hereapi.com/v1/geocode"
       # Acquire from developer.here.com

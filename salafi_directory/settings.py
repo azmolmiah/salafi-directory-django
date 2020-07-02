@@ -156,6 +156,7 @@ STRIPE_API_KEY=env('STRIPE_API_KEY')
 # Cached Sessions
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
+# Cache
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
