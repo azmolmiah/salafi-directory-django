@@ -11,16 +11,14 @@
     
     <div class="row">
       <div class="col-6 mx-auto">
-        <form action="{% url 'charge' %}" method="post" id="payment-form">
-          {% csrf_token %}
-    
+        <form action="{% url 'charge' %}" method="post" id="payment-form">{% csrf_token %}
           <div class="form-row">
             <label for="amount">Amount</label>
             <select required class="form-control mb-2" name="amount">
               <option selected value="1">£1 --- Support Salafi Directory</option>
-              <option value="5">£5 --- Support basic maintanence</option>
+              <option value="5">£5 --- Support site maintanence</option>
               <option value="10">£10 --- Support email services</option>
-              <option value="15">£15 --- Support site hosting</option>
+              <option value="15">£15 --- Support hosting services</option>
             </select>
             <label for="name">Name</label>
             <input required class="form-control mb-2" type="name" name="name" placeholder="Enter name">
