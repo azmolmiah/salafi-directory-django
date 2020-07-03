@@ -7,6 +7,10 @@ img {
 .logo {
   width: 8rem; }
 
+.logo2 {
+  width: 3rem;
+}
+
 .navbar {
   opacity: 0.9;
   text-transform: uppercase; }

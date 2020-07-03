@@ -47,3 +47,12 @@ def index(request):
 
 def about(request):
     return render(request, 'pages/about.html')
+
+def privacy(request):
+    return render(request, 'pages/privacy.html')
+
+def cookies(request):
+    return render(request, 'pages/cookies.html')
+
+def conditions(request):
+    return render(request, 'pages/conditions.html')
