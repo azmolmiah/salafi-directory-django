@@ -30,12 +30,15 @@ class Lecture(models.Model):
 
     def is_live(self):
         return datetime.now().timestamp() >= self.date_And_Time.timestamp() and datetime.now().timestamp() <= self.expiration_Date_And_Time.timestamp()
+    
+    def not_started(self):
+        return datetime.now().timestamp() < self.date_And_Time.timestamp()
 
     def clean(self):
         if self.date_And_Time.date() > self.expiration_Date_And_Time.date():
             raise ValidationError("Date cannot be ahead of expiration date")
 
-        if self.date_And_Time.date() == self.expiration_Date_And_Time.date() and self.date_And_Time.time() > self.expiration_Date_And_Time.time():
+        if self.date_And_Time.date() == self.expiration_Date_And_Time.date() and self.date_And_Time.time() >= self.expiration_Date_And_Time.time():
             raise ValidationError("Time cannot be ahead of expiration time")
 
         if(Lecture.objects.count() > 5 and self.pk is None):
