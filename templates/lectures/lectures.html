@@ -138,7 +138,7 @@
                 
                 <div class="card-body mt-0 pt-0">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{ lecture.organisation.name }}</h4>
+                    <h5 class="mb-1">{{ lecture.organisation.name }}</h5>
                     {% if lecture.is_online %}
                       <div class="mb-3">Please, use the link below.</div>
                       
@@ -148,7 +148,7 @@
                     {% endif %}
                   </div>
                   <strong>{{ lecture.title }}</strong>
-                  <div class="pb-2">{{ lecture.description }}<a href="#" data-toggle="modal" data-target=".teacher-modal" class="blockquote-footer">View Teachers </a></div>
+                  <div>{{ lecture.description }}<a href="#" data-toggle="modal" data-target=".teacher-modal" class="blockquote-footer">View Teachers </a></div>
                   <div class="modal fade teacher-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-sm">
                       <div class="modal-content pt-3">
@@ -161,7 +161,7 @@
                       </div>
                     </div>
                   </div>
-
+                  <hr>
                   
                   <div class="row pb-2" >
                     <div class="col-5 text-center p-0">
@@ -179,6 +179,7 @@
                       {% endif %}
                     </div>
                   </div>
+                  <hr>
                   {% if lecture.not_started %}
                     <div class="btn btn-primary btn-block">Not Started</div>
                   {% else %}
@@ -190,7 +191,7 @@
                       {% endif %}
                     </a>
                   {% endif %}   
-                  <small>Share: <a href="https://twitter.com/share?url=https://www.salafi.directory/?keywords={{ lecture.title }}">Twitter </a><a href="http://www.facebook.com/sharer/sharer.php?u=https://www.salafi.directory/?keywords={{ lecture.title }}">Facebook </a><a href="whatsapp://send?text=https://www.salafi.directory" data-action="share/whatsapp/share">Whattsapp</a></small>             
+                  <small>Share: <a href="https://twitter.com/share?url=https://www.salafi.directory/?keywords={{ lecture.title }}">Twitter </a><a href="http://www.facebook.com/sharer/sharer.php?u=https://www.salafi.directory/?keywords={{ lecture.title }}">Facebook </a><a href="whatsapp://send?text=https://www.salafi.directory/?keywords={{ lecture.title }}" data-action="share/whatsapp/share">Whattsapp</a></small>             
                 </div>
               </div>
             </div>

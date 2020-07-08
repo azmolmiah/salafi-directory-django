@@ -35,12 +35,11 @@ class Class(models.Model):
 
     def is_live(self):
         return self.date_And_Time.day == datetime.now().day and self.date_And_Time.hour == datetime.now().hour
+    
+    def not_started(self):
+        return datetime.now().timestamp() < self.date_And_Time.timestamp()
 
     def clean(self):
-        if(Class.objects.count() > 10 and self.pk is None):
-            raise ValidationError(
-                "You are only allowed 10 classes. Please, edit or remove a class.")
-
         if(self.photo.file.size > 25000):
             raise ValidationError(
                 f'The image is {self.photo.file.size / 1000} Kilobytes. Must be 25 Kilobytes or less.')

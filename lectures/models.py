@@ -41,10 +41,6 @@ class Lecture(models.Model):
         if self.date_And_Time.date() == self.expiration_Date_And_Time.date() and self.date_And_Time.time() >= self.expiration_Date_And_Time.time():
             raise ValidationError("Time cannot be ahead of expiration time")
 
-        if(Lecture.objects.count() > 5 and self.pk is None):
-            raise ValidationError(
-                "You are only allowed five lectures. Please, edit or remove a lecture.")
-
         if(self.photo.file.size > 25000):
             raise ValidationError(
                 f'The image is {self.photo.file.size / 1000} Kilobytes. Must be 25 Kilobytes or less.')
