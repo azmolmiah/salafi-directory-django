@@ -19,13 +19,13 @@ def index(request):
         queryset_list = cache.get('cached_lectures_queryset_list')
     else:
         queryset_list = Lecture.objects.order_by('-created')
-        cache.set('cached_lectures_queryset_list', queryset_list, 60 * 60 * 24)
+        cache.set('cached_lectures_queryset_list', queryset_list, 60 * 60 * 3)
     
     if cache.get('cached_lectures_orgs'):
         orgs = cache.get('cached_lectures_orgs')
     else:
         orgs = Organisation.objects.filter(types='Centre')
-        cache.set('cached_lectures_orgs', orgs, 60 * 60 * 24)
+        cache.set('cached_lectures_orgs', orgs, 60 * 60 * 3)
 
     # Keywords
     if 'keywords' in request.GET:

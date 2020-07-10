@@ -7,4 +7,5 @@ urlpatterns = [
     path('privacypolicy', views.privacy, name='privacy'),
     path('cookiesandcahespolicy', views.cookies, name='cookies'),
     path('conditionsofuse', views.conditions, name='conditions'),
+    path('questionsandaswers', views.qanda, name='qanda'),
 ]

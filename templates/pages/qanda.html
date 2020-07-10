@@ -2,16 +2,16 @@
 
 {% load static %} 
 
-{% block title %} | Privacy policy {% endblock %}
+{% block title %} | Q &amp; A {% endblock %}
 
 {% block content %}
 <section id="showcase-inner" class="py-5 text-white">
   <div class="container">
     <div class="row text-center">
       <div class="col-md-12">
-        <h1 class="display-4">Privacy policy</h1>
+        <h1 class="display-4">Q &amp; A</h1>
         <p class="lead">
-          This is the Privacy policy for Salafi Directory website and services.
+          Popular questions and answers regarding the use of this website.
         </p>
       </div>
     </div>
@@ -26,13 +26,13 @@
         <li class="breadcrumb-item">
           <a href="{% url 'index' %}"> <i class="fas fa-home"></i> Home</a>
         </li>
-        <li class="breadcrumb-item active">Privacy policy</li>
+        <li class="breadcrumb-item active">Q &amp; A</li>
       </ol>
     </nav>
   </div>
 </section>
 
-<section id="privacy" class="my-3">
+<div id="questions">
   <div class="container">
     <div class="row">
       <div class="col-9">
@@ -44,6 +44,6 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {% endblock %}
