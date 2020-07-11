@@ -11,7 +11,7 @@ from .models import Organisation
 def index(request):
     ip = request.META.get('REMOTE_ADDR')
     g = GeoIP2('GeoLite2-City_20200602')
-    time_zone = g.city('185.35.50.4')['time_zone']
+    time_zone = g.city(f'{ip}')['time_zone']
     queryset_list = None
     orgs = None
 
