@@ -11,9 +11,9 @@ from pages.models import Page
 def index(request):
     ip = request.META.get('REMOTE_ADDR')
     g = GeoIP2('GeoLite2-City_20200602')
-    country_code = g.country_code('185.35.50.4')
-    country_name = g.country_name('185.35.50.4')
-    time_zone = g.city('185.35.50.4')['time_zone']
+    country_code = g.country_code(f'{ip}')
+    country_name = g.country_name(f'{ip}')
+    time_zone = g.city(f'{ip}')['time_zone']
     organisation = None
     classes = None
     lectures = None
