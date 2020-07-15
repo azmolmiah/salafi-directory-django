@@ -8,8 +8,16 @@ from lectures.models import Lecture
 from organisations.models import Organisation
 from pages.models import Page
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
 def index(request):
-    ip = request.META.get('REMOTE_ADDR')
+    ip = get_client_ip(request)
     g = GeoIP2('GeoLite2-City_20200602')
     country_code = g.country_code('185.35.50.4')
     country_name = g.country_name('185.35.50.4')

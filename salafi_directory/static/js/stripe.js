@@ -1,4 +1,4 @@
-
+if(document.getElementById('card-element') != null){
   // Create a Stripe client.
   var stripe = Stripe('pk_live_51GwSp5GZKNdO8Oa0A4icw1TVQ8fRRAu4UHiCFGGkqiebUFHKnRPx06rsaSbtveXZNTKK8ZMi3BLqfCrpSIKe4jyh007TOEW0Yq');
 
@@ -27,6 +27,7 @@
   var card = elements.create('card', { hidePostalCode: true, style: style});
 
   // Add an instance of the card Element into the `card-element` <div>.
+  
   card.mount('#card-element');
 
   // Handle real-time validation errors from the card Element.
@@ -69,3 +70,5 @@
     // Submit the form
     form.submit();
   }
+
+};

@@ -19,13 +19,14 @@ window.onload = function () {
   }
 
   const policyBtn = document.getElementById('policyBtn');
-  policyBtn.addEventListener('click', (e) => {
-    e.path[4].remove();
-    localStorage.setItem("btn", JSON.stringify(true));
-  })
+  if (policyBtn != null){
+    policyBtn.addEventListener('click', (e) => {
+      e.path[4].remove();
+      localStorage.setItem("btn", JSON.stringify(true));
+    })
+  }
 
   const date = new Date();
   document.querySelector('.year').innerHTML = date.getFullYear();
-
 }
 
