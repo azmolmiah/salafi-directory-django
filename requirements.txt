@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 asgiref==3.2.7
 astroid==2.4.1
 autopep8==1.5.2 
@@ -5,21 +6,29 @@ certifi==2020.4.5.1
 chardet==3.0.4
 colorama==0.4.3
 Django==3.0.6
+=======
+Django==3.0.7
+>>>>>>> 99db5f4a1db7c2fa9fb9e81c8ad3e175e40172b8
 django-admin-list-filter-dropdown==1.0.3
 django-ckeditor==5.9.0
 django-countries==6.1.2
 django-environ==0.4.5
+<<<<<<< HEAD
 django-js-asset==1.2.2
 geographiclib==1.50
 geoip2==3.0.0 
 idna==2.9
 isort==4.3.21
 lazy-object-proxy==1.4.3
+=======
+geoip2==3.0.0 
+>>>>>>> 99db5f4a1db7c2fa9fb9e81c8ad3e175e40172b8
 maxminddb==1.5.4
 mccabe==0.6.1
 Pillow==7.1.2
 psycopg2==2.8.5
 psycopg2-binary==2.8.5
+<<<<<<< HEAD
 pycodestyle==2.6.0
 pylint==2.5.2
 pylint-django==2.0.15
@@ -33,3 +42,9 @@ stripe==2.48.0
 toml==0.10.1
 urllib3==1.25.9
 wrapt==1.12.1
+=======
+python-memcached==1.59
+pytz==2020.1
+requests==2.23.0
+stripe==2.48.0
+>>>>>>> 99db5f4a1db7c2fa9fb9e81c8ad3e175e40172b8
