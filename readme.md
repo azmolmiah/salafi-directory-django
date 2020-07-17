@@ -20,7 +20,7 @@
 > Salafi organisations will be able to login to manage their own lisiting. Public can use the query forms to search for the information above.
 
 - Version 1.0.0
-- License MIT
+- License Django and Salafi Directory
 
 ## Application Specifications
 
@@ -33,7 +33,7 @@
   - Select specific fields in result
   - Limit number of results
   - Filter by fields
-  - Use HERE maps to get exact location from address
+  - Use HERE maps API to get exact location from address
 - Get single organisation
 - Create new organisation
   - Authenticated users only
@@ -47,7 +47,7 @@
   - Administrator or Superuser
   - Validation on update
 - Delete organisation
-  - Publisher only
+  - Superuser only
 
 ### Classes
 
@@ -57,7 +57,7 @@
   - Select specific fields in result
   - Limit number of results
   - Filter by fields
-  - Timezone aware times
+  - Timezone aware times and day
 - Get single class
 - Create new class
   - Authenticated users only
@@ -75,7 +75,7 @@
   - Select specific fields in result
   - Limit number of results
   - Filter by fields
-  - timezone aware times
+  - timezone aware times and dates
 - Get single lecture
 - Create new lecture
   - Authenticated users only
@@ -94,13 +94,10 @@
 - User login
   - User can login with email and password
   - Plain text password will compare with stored hashed password
-  - Once logged in, a token will be sent along with a cookie (token = xxx)
-- User logout
-  - Cookie will be sent to set token = none
 - Get user
   - Current logged in user data set with query set filter
 - Password reset (lost password)
-  - User can request to reset password by emailing Slafi Directory
+  - User can request to reset password by emailing Salafi Directory
   - A new password to the users registered email address
   - Password can be reset in the admin area.
 - Update admininistrator user info
