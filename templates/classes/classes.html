@@ -153,7 +153,7 @@
                       {% endif %}
                     </div>
                   </div>
-                  <hr>                 
+                  <hr>         
                   <a href="{{ singleClass.link }}" class="btn btn-primary btn-block">
                     {% if singleClass.is_live %}
                       Live
@@ -161,7 +161,7 @@
                       Recording
                     {% endif %}
                   </a>
-      
+                  <small>Share: <a href="https://twitter.com/share?url=https://www.salafi.directory/classes/?keywords={{ singleClass.title.split|join:'+' }}">Twitter </a><a href="http://www.facebook.com/sharer/sharer.php?u=https://www.salafi.directory/classes/?keywords={{ singleClass.title.split|join:'+' }}">Facebook </a><a href="whatsapp://send?text=https://www.salafi.directory/classes/?keywords={{ singleClass.title.split|join:'+' }}" data-action="share/whatsapp/share">Whattsapp</a></small>
                 </div>
               </div>
             </div>

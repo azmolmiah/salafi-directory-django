@@ -19,7 +19,7 @@ def get_client_ip(request):
 def index(request):
     ip = get_client_ip(request)
     g = GeoIP2('GeoLite2-City_20200602')
-    time_zone = g.city(f'{ip}')['time_zone']
+    time_zone = g.city('185.134.23.198')['time_zone']
     queryset_list = None
     orgs = None
 

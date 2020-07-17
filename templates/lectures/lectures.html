@@ -191,7 +191,7 @@
                       {% endif %}
                     </a>
                   {% endif %}   
-                  <small>Share: <a href="https://twitter.com/share?url=https://www.salafi.directory/?keywords={{ lecture.title }}">Twitter </a><a href="http://www.facebook.com/sharer/sharer.php?u=https://www.salafi.directory/?keywords={{ lecture.title }}">Facebook </a><a href="whatsapp://send?text=https://www.salafi.directory/?keywords={{ lecture.title }}" data-action="share/whatsapp/share">Whattsapp</a></small>             
+                  <small>Share: <a href="https://twitter.com/share?url=https://www.salafi.directory/lectures/?keywords={{ lecture.title.split|join:'+' }}">Twitter </a><a href="http://www.facebook.com/sharer/sharer.php?u=https://www.salafi.directory/lectures/?keywords={{ lecture.title.split|join:'+' }}">Facebook </a><a href="whatsapp://send?text=https://www.salafi.directory/lectures/?keywords={{ lecture.title.split|join:'+' }}" data-action="share/whatsapp/share">Whattsapp</a></small>             
                 </div>
               </div>
             </div>
