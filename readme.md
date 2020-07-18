@@ -119,7 +119,9 @@
 - Django: https://docs.djangoproject.com/en/3.0/topics/security/
 
 ### Performance
-- Memory cache for website performance
+- Cached query set on organisations, classes and lectures
+- Cached maps and privacy, conditions, cookies page.
+- Minified and Compressed static root folder, html, css and javscript files.
 - Limit image size
 
 ### Deployment
