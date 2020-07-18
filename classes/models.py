@@ -22,7 +22,7 @@ class Class(models.Model):
     description = models.TextField(
         max_length=132, help_text='Must be equal 132 characters.', validators=[MinLengthValidator(132)])
     date_And_Time = models.DateTimeField(
-        default=timezone.now, help_text='The day and time will be used for every week.')
+        default=timezone.now, help_text='The day and time will be used for every week.Please, add time difference if behind or takeaway if ahead of server time.')
     price = models.DecimalField(
         max_digits=6, decimal_places=2, default=0, help_text='Eg: 0 = free / 1.22 = 1.22')
     language = models.CharField(max_length=20, default='English')
