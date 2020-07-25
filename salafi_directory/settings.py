@@ -182,8 +182,6 @@ CACHES = {
     }
 }
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-
 try:
     from .local_settings import *
 except ImportError:

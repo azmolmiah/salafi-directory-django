@@ -123,6 +123,7 @@
 - Cached maps and privacy, conditions, cookies page.
 - Minified and Compressed static root folder, html, css and javscript files.
 - Limit image size
+- https://docs.djangoproject.com/en/3.0/topics/performance/
 
 ### Deployment
 > Django with Postgres, Nginx, and Gunicorn on Ubuntu 18.04
